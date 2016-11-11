@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MenuItem from 'material-ui/MenuItem';
 import {Card, CardHeader} from 'material-ui/Card';
 
-import DataTables from '../../src/DataTables';
+import DataTables from '../../src';
 
 const styles = {
   container: {
@@ -299,7 +299,7 @@ class Main extends Component {
                 onFilterValueChange={this.handleFilterValueChange}
                 onSortOrderChange={this.handleSortOrderChange}
                 total={100}
-                />
+              />
             </Card>
           </div>
           <div style={styles.component}>
@@ -316,7 +316,7 @@ class Main extends Component {
                 showCheckboxes={false}
                 showHeaderToolbar={false}
                 total={100}
-                />
+              />
             </Card>
           </div>
         </div>
