@@ -66,7 +66,7 @@ gulp.task('build', () => {
 });
 
 gulp.task('build:copy', function() {
-  return gulp.src(['package.json'])
+  return gulp.src(['package.json', 'README.md', 'LICENSE'])
   .pipe(copy('build/', {prefix: 1}));
 });
 
