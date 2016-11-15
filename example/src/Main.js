@@ -216,6 +216,19 @@ const TABLE_DATA = [
   },
 ];
 
+const TABLE_DATA_NEXT = [
+  {
+    name: 'Marshmallow',
+    calories: '159',
+    fat: '6.0',
+    carbs: '24',
+    protein: '4.0',
+    sodium: '87',
+    calcium: '14%',
+    iron: '1%',
+  },
+];
+
 class Main extends Component {
   constructor(props, context) {
     super(props, context);
@@ -223,6 +236,14 @@ class Main extends Component {
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
     this.handleCellClick = this.handleCellClick.bind(this);
     this.handleCellDoubleClick = this.handleCellDoubleClick.bind(this);
+    this.handleRowSelection = this.handleRowSelection.bind(this);
+    this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
+    this.handleNextPageClick = this.handleNextPageClick.bind(this);
+
+    this.state = {
+      data: TABLE_DATA,
+      currentPage: 1,
+    };
   }
 
   handleSortOrderChange(key, order) {
@@ -238,7 +259,27 @@ class Main extends Component {
   }
 
   handleCellDoubleClick(rowIndex, columnIndex, row, column) {
-    console.log('rowIndex: ' + rowIndex + ' columnIndex:' + columnIndex);
+    console.log('rowIndex: ' + rowIndex + ' columnIndex: ' + columnIndex);
+  }
+
+  handleRowSelection(selectedRows) {
+    console.log('selectedRows: ' + selectedRows);
+  }
+
+  handlePreviousPageClick() {
+    console.log('handlePreviousPageClick');
+    this.setState({
+      data: TABLE_DATA,
+      currentPage: 1,
+    });
+  }
+
+  handleNextPageClick() {
+    console.log('handleNextPageClick');
+    this.setState({
+      data: TABLE_DATA_NEXT,
+      currentPage: 2,
+    });
   }
 
   render() {
@@ -265,7 +306,7 @@ class Main extends Component {
             </Card>
           </div>
           <div style={styles.component}>
-            <h2>DataTables (Selectable & Tooltip)</h2>
+            <h2>DataTables (Selectable & Tooltip & Pagination)</h2>
             <Card style={{margin: 12, textAlign: 'left'}}>
               <CardHeader
                 title='Nutrition'
@@ -276,9 +317,15 @@ class Main extends Component {
                 selectable={true}
                 showRowHover={true}
                 columns={TABLE_COLUMNS_TOOLTIP}
-                data={TABLE_DATA}
+                data={this.state.data}
+                currentPage={this.state.currentPage}
+                multiSelectable={true}
+                onNextPageClick={this.handleNextPageClick}
+                onPreviousPageClick={this.handlePreviousPageClick}
+                onRowSelection={this.handleRowSelection}
                 showCheckboxes={true}
-                total={100}
+                enableSelectAll={true}
+                total={11}
               />
             </Card>
           </div>
