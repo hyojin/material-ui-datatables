@@ -74,6 +74,7 @@ class DataTables extends Component {
     onFilterValueChange: PropTypes.func,
     onNextPageClick: PropTypes.func,
     onPreviousPageClick: PropTypes.func,
+    onRowSelection: PropTypes.func,
     onRowSizeChange: PropTypes.func,
     onSortOrderChange: PropTypes.func,
     rowSize: PropTypes.number,
@@ -128,11 +129,12 @@ class DataTables extends Component {
   }
 
   handleHeaderColumnClick = (event, rowIndex, columnIndex) => {
-    const column = this.props.columns[columnIndex - 1];
+    const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
+    const column = this.props.columns[adjustedColumnIndex];
     if (column && column.sortable) {
       const {sort} = this.state;
       const {onSortOrderChange} = this.props;
-      const key = this.props.columns[columnIndex - 1].key;
+      const key = column.key;
       const order = sort.column === column.key && sort.order === 'asc' ? 'desc' : 'asc';
       this.setState({
         sort: {
@@ -149,13 +151,14 @@ class DataTables extends Component {
   handleCellClick = (rowIndex, columnIndex, event) => {
     const {onCellClick, selectable} = this.props;
     if (onCellClick && !selectable) {
+      const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
       onCellClick(
         rowIndex,
-        columnIndex,
+        adjustedColumnIndex,
         // row data
         this.props.data[rowIndex],
         // clicked column
-        this.props.data[rowIndex][this.props.columns[columnIndex - 1].key],
+        this.props.data[rowIndex][this.props.columns[adjustedColumnIndex].key],
         event
       );
     }
@@ -164,13 +167,14 @@ class DataTables extends Component {
   handleCellDoubleClick = (rowIndex, columnIndex, event) => {
     const {onCellDoubleClick, selectable} = this.props;
     if (onCellDoubleClick && !selectable) {
+      const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
       onCellDoubleClick(
         rowIndex,
-        columnIndex,
+        adjustedColumnIndex,
         // row data
         this.props.data[rowIndex],
         // clicked column
-        this.props.data[rowIndex][this.props.columns[columnIndex - 1].key],
+        this.props.data[rowIndex][this.props.columns[adjustedColumnIndex].key],
         event
       );
     }
@@ -201,6 +205,13 @@ class DataTables extends Component {
     const {onFilterValueChange} = this.props;
     if (onFilterValueChange) {
       onFilterValueChange(value);
+    }
+  }
+
+  handleRowSelection = (selectedRows) => {
+    const {onRowSelection} = this.props;
+    if (onRowSelection) {
+      onRowSelection(selectedRows);
     }
   }
 
@@ -269,6 +280,7 @@ class DataTables extends Component {
           multiSelectable={multiSelectable}
           onCellClick={this.handleCellClick}
           onCellDoubleClick={this.handleCellDoubleClick}
+          onRowSelection={this.handleRowSelection}
         >
           <TableHeader
             displaySelectAll={showCheckboxes}
