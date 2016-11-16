@@ -65,6 +65,7 @@ class DataTables extends Component {
     data: PropTypes.array,
     deselectOnClickaway: PropTypes.bool,
     enableSelectAll: PropTypes.bool,
+    filterHintText: PropTypes.string,
     fixedFooter: PropTypes.bool,
     fixedHeader: PropTypes.bool,
     height: PropTypes.string,
@@ -101,6 +102,7 @@ class DataTables extends Component {
     summaryLabelTemplate: (start, end, total) => {
       return `${start} - ${end} of ${total}`;
     },
+    filterHintText: 'Search',
     columns: [],
     data: [],
     currentPage: 1,
@@ -218,6 +220,7 @@ class DataTables extends Component {
   render() {
     const {
       title,
+      filterHintText,
       fixedHeader,
       fixedFooter,
       stripedRows,
@@ -263,6 +266,7 @@ class DataTables extends Component {
     if (showHeaderToolbar) {
       headerToolbar = (
         <DataTablesHeaderToolbar
+          filterHintText={filterHintText}
           title={title}
           onFilterValueChange={this.handleFilterValueChange}
         />

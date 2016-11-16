@@ -353,15 +353,17 @@ class Main extends Component {
             <h2>DataTables (Internationalization)</h2>
             <Card style={{margin: 12}}>
               <DataTables
+                title={'ニュートリション'}
                 height={'auto'}
                 selectable={false}
                 showRowHover={true}
                 columns={TABLE_COLUMNS}
                 data={TABLE_DATA}
+                filterHintText={'検索'}
                 rowSizeLabel={'ページサイズ'}
                 summaryLabelTemplate={(start, end, total) => {return `${start} - ${end} ${total}件`}}
                 showCheckboxes={false}
-                showHeaderToolbar={false}
+                showHeaderToolbar={true}
                 total={100}
               />
             </Card>

@@ -44,6 +44,7 @@ class DataTablesHeaderToolbar extends Component {
   static muiName = 'DataTablesHeaderToolbar';
 
   static propTypes = {
+    filterHintText: PropTypes.string,
     handleFilterValueChange: PropTypes.func,
     onFilterValueChange: PropTypes.func,
     title: PropTypes.string,
@@ -108,6 +109,7 @@ class DataTablesHeaderToolbar extends Component {
 
   render() {
     const {
+      filterHintText,
       title, // eslint-disable-line no-unused-vars
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
@@ -133,7 +135,7 @@ class DataTablesHeaderToolbar extends Component {
             <TextField
               fullWidth={true}
               underlineShow={false}
-              hintText={'Search'}
+              hintText={filterHintText}
               onChange={this.handleFilterValueChange}
               value={filterValue}
             />
