@@ -7,6 +7,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MenuItem from 'material-ui/MenuItem';
 import {Card, CardHeader} from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 
 import DataTables from '../../src';
 
@@ -239,6 +242,8 @@ class Main extends Component {
     this.handleRowSelection = this.handleRowSelection.bind(this);
     this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
+    this.handlePersonAddClick = this.handlePersonAddClick.bind(this);
+    this.handleInfoClick = this.handleInfoClick.bind(this);
 
     this.state = {
       data: TABLE_DATA,
@@ -280,6 +285,14 @@ class Main extends Component {
       data: TABLE_DATA_NEXT,
       currentPage: 2,
     });
+  }
+
+  handlePersonAddClick() {
+    console.log('handlePersonAddClick');
+  }
+
+  handleInfoClick() {
+    console.log('handleInfoClick');
   }
 
   render() {
@@ -365,6 +378,34 @@ class Main extends Component {
                 showCheckboxes={false}
                 showHeaderToolbar={true}
                 total={100}
+              />
+            </Card>
+          </div>
+          <div style={styles.component}>
+            <h2>DataTables (Toolbar Icons)</h2>
+            <Card style={{margin: 12}}>
+              <DataTables
+                title={'Nutrition'}
+                height={'auto'}
+                selectable={false}
+                showRowHover={true}
+                columns={TABLE_COLUMNS_SORT_STYLE}
+                data={TABLE_DATA}
+                showCheckboxes={false}
+                showHeaderToolbar={true}
+                total={100}
+                toolbarIconRight={[
+                  <IconButton
+                    onClick={this.handlePersonAddClick}
+                  >
+                    <PersonAdd />
+                  </IconButton>,
+                  <IconButton
+                    onClick={this.handleInfoClick}
+                  >
+                    <InfoOutline />
+                  </IconButton>
+                ]}
               />
             </Card>
           </div>

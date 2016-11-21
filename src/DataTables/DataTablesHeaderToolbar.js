@@ -48,6 +48,7 @@ class DataTablesHeaderToolbar extends Component {
     handleFilterValueChange: PropTypes.func,
     onFilterValueChange: PropTypes.func,
     title: PropTypes.string,
+    toolbarIconRight: PropTypes.node,
   };
 
   static defaultProps = {
@@ -110,6 +111,7 @@ class DataTablesHeaderToolbar extends Component {
   render() {
     const {
       filterHintText,
+      toolbarIconRight,
       title, // eslint-disable-line no-unused-vars
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
@@ -152,6 +154,29 @@ class DataTablesHeaderToolbar extends Component {
       );
     }
 
+    const toolbarIconRightChildren = [];
+    if (toolbarIconRight) {
+      if (toolbarIconRight.length) {
+        toolbarIconRight.map((toolbarIcon, i) => {
+          toolbarIconRightChildren.push(React.cloneElement(
+            toolbarIcon,
+            {
+              style: Object.assign(styles.headerToolbarIconButton, styles.icon),
+              key: i,
+            }
+          ));
+        });
+      } else {
+        toolbarIconRightChildren.push(React.cloneElement(
+          toolbarIconRight,
+          {
+            style: Object.assign(styles.headerToolbarIconButton, styles.icon),
+            key: 1,
+          }
+        ));
+      }
+    }
+
     return (
       <Toolbar style={styles.headerToolbar}>
         {contentNode}
@@ -164,6 +189,7 @@ class DataTablesHeaderToolbar extends Component {
               color={mode === 'filter' ? blue500 : ''}
             />
           </IconButton>
+          {toolbarIconRightChildren}
         </ToolbarGroup>
       </Toolbar>
     );

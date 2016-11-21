@@ -88,6 +88,7 @@ class DataTables extends Component {
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
     title: PropTypes.string,
+    toolbarIconRight: PropTypes.node,
     total: PropTypes.number,
   };
 
@@ -239,6 +240,7 @@ class DataTables extends Component {
       columns,
       data,
       currentPage,
+      toolbarIconRight,
       total,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
@@ -269,6 +271,7 @@ class DataTables extends Component {
           filterHintText={filterHintText}
           title={title}
           onFilterValueChange={this.handleFilterValueChange}
+          toolbarIconRight={toolbarIconRight}
         />
       );
     }
