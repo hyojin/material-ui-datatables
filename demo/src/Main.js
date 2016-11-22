@@ -1,27 +1,39 @@
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-import {deepOrange500} from 'material-ui/styles/colors';
+import {indigo600} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MenuItem from 'material-ui/MenuItem';
 import {Card, CardHeader} from 'material-ui/Card';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 
-import DataTables from '../../src';
+import DataTables from 'material-ui-datatables';
 
 const styles = {
+  appBarTitle: {
+    fontSize: 24,
+    fontWeight: 'normal',
+    WebkitFontSmoothing: 'antialiased',
+  },
   container: {
-    textAlign: 'center',
   },
   component: {
-    margin: '60px 20px',
-  }
+    textAlign: 'center',
+  },
+  iconStyles: {
+    paddingLeft: 2,
+    color: '#FFF',
+  },
 };
 
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: deepOrange500,
+    primary1Color: indigo600,
+    accent1Color: indigo600,
   },
 });
 
@@ -286,56 +298,27 @@ class Main extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <h1>Material-UI-Custom-Components</h1>
+          <AppBar
+            title='Data tables'
+            showMenuIconButton={false}
+            titleStyle={styles.appBarTitle}
+            iconElementRight={(
+              <IconButton
+                href={'https://github.com/hyojin/material-ui-datatables'}
+                iconStyle={styles.iconStyles}
+              >
+                <FontIcon
+                  className='fa fa-github'
+                />
+              </IconButton>
+            )}
+          />
           <div style={styles.component}>
-            <h2>DataTables (Basic)</h2>
-            <Card style={{margin: 12, textAlign: 'left'}}>
-              <CardHeader
-                title='Nutrition'
-                titleStyle={{fontSize: 20}}
-              />
-              <DataTables
-                height={'auto'}
-                selectable={false}
-                showRowHover={false}
-                columns={TABLE_COLUMNS}
-                data={TABLE_DATA}
-                showCheckboxes={false}
-                total={100}
-              />
-            </Card>
-          </div>
-          <div style={styles.component}>
-            <h2>DataTables (Selectable & Tooltip & Pagination)</h2>
-            <Card style={{margin: 12, textAlign: 'left'}}>
-              <CardHeader
-                title='Nutrition'
-                titleStyle={{fontSize: 20}}
-              />
-              <DataTables
-                height={'auto'}
-                selectable={true}
-                showRowHover={true}
-                columns={TABLE_COLUMNS_TOOLTIP}
-                data={this.state.data}
-                currentPage={this.state.currentPage}
-                multiSelectable={true}
-                onNextPageClick={this.handleNextPageClick}
-                onPreviousPageClick={this.handlePreviousPageClick}
-                onRowSelection={this.handleRowSelection}
-                showCheckboxes={true}
-                enableSelectAll={true}
-                total={11}
-              />
-            </Card>
-          </div>
-          <div style={styles.component}>
-            <h2>DataTables (Filter & Column Sort & Styled Column)</h2>
             <Card style={{margin: 12}}>
               <DataTables
                 title={'Nutrition'}
                 height={'auto'}
-                selectable={false}
+                selectable={true}
                 showRowHover={true}
                 columns={TABLE_COLUMNS_SORT_STYLE}
                 data={TABLE_DATA}
@@ -346,25 +329,8 @@ class Main extends Component {
                 onFilterValueChange={this.handleFilterValueChange}
                 onSortOrderChange={this.handleSortOrderChange}
                 total={100}
-              />
-            </Card>
-          </div>
-          <div style={styles.component}>
-            <h2>DataTables (Internationalization)</h2>
-            <Card style={{margin: 12}}>
-              <DataTables
-                title={'ニュートリション'}
-                height={'auto'}
-                selectable={false}
-                showRowHover={true}
-                columns={TABLE_COLUMNS}
-                data={TABLE_DATA}
-                filterHintText={'検索'}
-                rowSizeLabel={'ページサイズ'}
-                summaryLabelTemplate={(start, end, total) => {return `${start} - ${end} ${total}件`}}
-                showCheckboxes={false}
-                showHeaderToolbar={true}
-                total={100}
+                rowSize={5}
+                rowSizeList={[5, 10, 15]}
               />
             </Card>
           </div>
