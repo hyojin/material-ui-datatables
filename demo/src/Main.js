@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
 import {indigo600} from 'material-ui/styles/colors';
-import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MenuItem from 'material-ui/MenuItem';
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card} from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
 import DataTables from 'material-ui-datatables';
+import FakeAPI from './FakeAPI';
 
 const styles = {
   appBarTitle: {
@@ -37,70 +34,6 @@ const muiTheme = getMuiTheme({
   },
 });
 
-const TABLE_COLUMNS = [
-  {
-    key: 'name',
-    label: 'Dessert (100g serving)',
-  }, {
-    key: 'calories',
-    label: 'Calories',
-  }, {
-    key: 'fat',
-    label: 'Fat (g)',
-  }, {
-    key: 'carbs',
-    label: 'Carbs (g)',
-  }, {
-    key: 'protein',
-    label: 'Protein (g)',
-  }, {
-    key: 'sodium',
-    label: 'Sodium (mg)',
-  }, {
-    key: 'calcium',
-    label: 'Calcium (%)',
-  }, {
-    key: 'iron',
-    label: 'Iron (%)',
-  },
-];
-
-const TABLE_COLUMNS_TOOLTIP = [
-  {
-    key: 'name',
-    label: 'Dessert (100g serving)',
-    tooltip: 'Dessert (100g serving)',
-  }, {
-    key: 'calories',
-    label: 'Calories',
-    tooltip: 'Calories',
-  }, {
-    key: 'fat',
-    label: 'Fat (g)',
-    tooltip: 'Fat (g)',
-  }, {
-    key: 'carbs',
-    label: 'Carbs (g)',
-    tooltip: 'Carbs (g)',
-  }, {
-    key: 'protein',
-    label: 'Protein (g)',
-    tooltip: 'Protein (g)',
-  }, {
-    key: 'sodium',
-    label: 'Sodium (mg)',
-    tooltip: 'Sodium (mg)',
-  }, {
-    key: 'calcium',
-    label: 'Calcium (%)',
-    tooltip: 'Calcium (%)',
-  }, {
-    key: 'iron',
-    label: 'Iron (%)',
-    tooltip: 'Iron (%)',
-  },
-];
-
 const TABLE_COLUMNS_SORT_STYLE = [
   {
     key: 'name',
@@ -108,7 +41,7 @@ const TABLE_COLUMNS_SORT_STYLE = [
     sortable: true,
     style: {
       width: 250,
-    }
+    },
   }, {
     key: 'calories',
     label: 'Calories',
@@ -131,113 +64,6 @@ const TABLE_COLUMNS_SORT_STYLE = [
   }, {
     key: 'iron',
     label: 'Iron (%)',
-  },
-];
-
-const TABLE_DATA = [
-  {
-    name: 'Frozen yogurt',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Ice cream sandwich',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Eclair',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Cupcake',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Gingerbread',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Jelly bean',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Lollipop',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Honeycomb',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'Donut',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  }, {
-    name: 'KitKat',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
-  },
-];
-
-const TABLE_DATA_NEXT = [
-  {
-    name: 'Marshmallow',
-    calories: '159',
-    fat: '6.0',
-    carbs: '24',
-    protein: '4.0',
-    sodium: '87',
-    calcium: '14%',
-    iron: '1%',
   },
 ];
 
@@ -246,52 +72,100 @@ class Main extends Component {
     super(props, context);
     this.handleSortOrderChange = this.handleSortOrderChange.bind(this);
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
-    this.handleCellClick = this.handleCellClick.bind(this);
-    this.handleCellDoubleClick = this.handleCellDoubleClick.bind(this);
-    this.handleRowSelection = this.handleRowSelection.bind(this);
     this.handlePreviousPageClick = this.handlePreviousPageClick.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
+    this.handleRowSizeChange = this.handleRowSizeChange.bind(this);
 
     this.state = {
-      data: TABLE_DATA,
+      data: [],
       currentPage: 1,
+      rowSize: 5,
+      total: 0,
+      sort: '',
+      order: '',
+      filter: '',
     };
   }
 
+  componentDidMount() {
+    FakeAPI(this.state.currentPage, this.state.rowSize, this.state.sort,
+      this.state.order, this.state.filter, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+        });
+      }
+    );
+  }
+
   handleSortOrderChange(key, order) {
-    console.log('key:' + key + ' order: ' + order);
+    FakeAPI(this.state.currentPage, this.state.rowSize, key,
+      order, this.state.filter, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+          sort: key,
+          order: order,
+        });
+      }
+    );
   }
 
   handleFilterValueChange(value) {
-    console.log('filter value: ' + value);
-  }
-
-  handleCellClick(rowIndex, columnIndex, row, column) {
-    console.log('rowIndex: ' + rowIndex + ' columnIndex: ' + columnIndex);
-  }
-
-  handleCellDoubleClick(rowIndex, columnIndex, row, column) {
-    console.log('rowIndex: ' + rowIndex + ' columnIndex: ' + columnIndex);
-  }
-
-  handleRowSelection(selectedRows) {
-    console.log('selectedRows: ' + selectedRows);
+    const page = 1;
+    FakeAPI(page, this.state.rowSize, this.state.sort,
+      this.state.order, value, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+          filter: value,
+          currentPage: page,
+        });
+      }
+    );
   }
 
   handlePreviousPageClick() {
-    console.log('handlePreviousPageClick');
-    this.setState({
-      data: TABLE_DATA,
-      currentPage: 1,
-    });
+    const page = this.state.currentPage - 1;
+    FakeAPI(page, this.state.rowSize, this.state.sort,
+      this.state.order, this.state.filter, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+          currentPage: page,
+        });
+      }
+    );
   }
 
   handleNextPageClick() {
-    console.log('handleNextPageClick');
-    this.setState({
-      data: TABLE_DATA_NEXT,
-      currentPage: 2,
-    });
+    const page = this.state.currentPage + 1;
+    FakeAPI(page, this.state.rowSize, this.state.sort,
+      this.state.order, this.state.filter, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+          currentPage: page,
+        });
+      }
+    );
+  }
+
+  handleRowSizeChange(index, rowSize) {
+    let page = this.state.currentPage;
+    if ((page - 1) * rowSize > this.state.total) {
+      page = 1;
+    }
+    FakeAPI(page, rowSize, this.state.sort,
+      this.state.order, this.state.filter, (result) => {
+        this.setState({
+          total: result.count,
+          data: result.data,
+          currentPage: page,
+          rowSize: rowSize,
+        });
+      }
+    );
   }
 
   render() {
@@ -299,7 +173,7 @@ class Main extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
           <AppBar
-            title='Data tables'
+            title={'Data tables'}
             showMenuIconButton={false}
             titleStyle={styles.appBarTitle}
             iconElementRight={(
@@ -308,7 +182,7 @@ class Main extends Component {
                 iconStyle={styles.iconStyles}
               >
                 <FontIcon
-                  className='fa fa-github'
+                  className={'fa fa-github'}
                 />
               </IconButton>
             )}
@@ -321,15 +195,19 @@ class Main extends Component {
                 selectable={true}
                 showRowHover={true}
                 columns={TABLE_COLUMNS_SORT_STYLE}
-                data={TABLE_DATA}
+                data={this.state.data}
                 showCheckboxes={false}
                 showHeaderToolbar={true}
                 onCellClick={this.handleCellClick}
                 onCellDoubleClick={this.handleCellDoubleClick}
                 onFilterValueChange={this.handleFilterValueChange}
+                onNextPageClick={this.handleNextPageClick}
+                onPreviousPageClick={this.handlePreviousPageClick}
                 onSortOrderChange={this.handleSortOrderChange}
-                total={100}
-                rowSize={5}
+                onRowSizeChange={this.handleRowSizeChange}
+                currentPage={this.state.currentPage}
+                total={this.state.total}
+                rowSize={this.state.rowSize}
                 rowSizeList={[5, 10, 15]}
               />
             </Card>

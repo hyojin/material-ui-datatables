@@ -47,7 +47,7 @@ gulp.task('browserSync',() => {
 });
 
 gulp.task('eslint', () => {
-  return gulp.src(['src/**/*.js'])
+  return gulp.src(['demo/src/**/*.js'])
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failAfterError());
