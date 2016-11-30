@@ -10,6 +10,12 @@ Material-UI-Datatables is a custom [React](https://facebook.github.io/react/) co
 npm install material-ui-datatables
 ```
 
+## Demo
+[Demo](https://hyojin.github.io/material-ui-datatables/)
+
+## Status
+Work in progress
+
 ## Usage
 ```jsx
 import React, {Component} from 'react';
