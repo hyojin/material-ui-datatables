@@ -247,7 +247,7 @@ class Main extends Component {
 
     this.state = {
       data: TABLE_DATA,
-      currentPage: 1,
+      page: 1,
     };
   }
 
@@ -275,7 +275,7 @@ class Main extends Component {
     console.log('handlePreviousPageClick');
     this.setState({
       data: TABLE_DATA,
-      currentPage: 1,
+      page: 1,
     });
   }
 
@@ -283,7 +283,7 @@ class Main extends Component {
     console.log('handleNextPageClick');
     this.setState({
       data: TABLE_DATA_NEXT,
-      currentPage: 2,
+      page: 2,
     });
   }
 
@@ -314,7 +314,7 @@ class Main extends Component {
                 columns={TABLE_COLUMNS}
                 data={TABLE_DATA}
                 showCheckboxes={false}
-                total={100}
+                count={100}
               />
             </Card>
           </div>
@@ -331,14 +331,14 @@ class Main extends Component {
                 showRowHover={true}
                 columns={TABLE_COLUMNS_TOOLTIP}
                 data={this.state.data}
-                currentPage={this.state.currentPage}
+                page={this.state.page}
                 multiSelectable={true}
                 onNextPageClick={this.handleNextPageClick}
                 onPreviousPageClick={this.handlePreviousPageClick}
                 onRowSelection={this.handleRowSelection}
                 showCheckboxes={true}
                 enableSelectAll={true}
-                total={11}
+                count={11}
               />
             </Card>
           </div>
@@ -358,7 +358,7 @@ class Main extends Component {
                 onCellDoubleClick={this.handleCellDoubleClick}
                 onFilterValueChange={this.handleFilterValueChange}
                 onSortOrderChange={this.handleSortOrderChange}
-                total={100}
+                count={100}
               />
             </Card>
           </div>
@@ -374,10 +374,10 @@ class Main extends Component {
                 data={TABLE_DATA}
                 filterHintText={'検索'}
                 rowSizeLabel={'ページサイズ'}
-                summaryLabelTemplate={(start, end, total) => {return `${start} - ${end} ${total}件`}}
+                summaryLabelTemplate={(start, end, count) => {return `${start} - ${end} ${count}件`}}
                 showCheckboxes={false}
                 showHeaderToolbar={true}
-                total={100}
+                count={100}
               />
             </Card>
           </div>
@@ -393,7 +393,7 @@ class Main extends Component {
                 data={TABLE_DATA}
                 showCheckboxes={false}
                 showHeaderToolbar={true}
-                total={100}
+                count={100}
                 toolbarIconRight={[
                   <IconButton
                     onClick={this.handlePersonAddClick}

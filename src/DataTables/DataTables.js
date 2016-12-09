@@ -61,7 +61,7 @@ class DataTables extends Component {
 
   static propTypes = {
     columns: PropTypes.array.isRequired,
-    currentPage: PropTypes.number,
+    count: PropTypes.number,
     data: PropTypes.array,
     deselectOnClickaway: PropTypes.bool,
     enableSelectAll: PropTypes.bool,
@@ -78,6 +78,7 @@ class DataTables extends Component {
     onRowSelection: PropTypes.func,
     onRowSizeChange: PropTypes.func,
     onSortOrderChange: PropTypes.func,
+    page: PropTypes.number,
     rowSize: PropTypes.number,
     rowSizeLabel: PropTypes.string,
     rowSizeList: PropTypes.array,
@@ -89,7 +90,6 @@ class DataTables extends Component {
     summaryLabelTemplate: PropTypes.func,
     title: PropTypes.string,
     toolbarIconRight: PropTypes.node,
-    total: PropTypes.number,
   };
 
   static contextTypes = {
@@ -100,14 +100,14 @@ class DataTables extends Component {
     rowSize: 10,
     rowSizeLabel: 'Rows per page:',
     rowSizeList: [10, 30, 50, 100],
-    summaryLabelTemplate: (start, end, total) => {
-      return `${start} - ${end} of ${total}`;
+    summaryLabelTemplate: (start, end, count) => {
+      return `${start} - ${end} of ${count}`;
     },
     filterHintText: 'Search',
     columns: [],
     data: [],
-    currentPage: 1,
-    total: 0,
+    page: 1,
+    count: 0,
     fixedHeader: false,
     fixedFooter: false,
     stripedRows: false,
@@ -239,18 +239,18 @@ class DataTables extends Component {
       summaryLabelTemplate,
       columns,
       data,
-      currentPage,
+      page,
       toolbarIconRight,
-      total,
+      count,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
 
-    let start = (currentPage - 1) * rowSize + 1;
-    let end = (currentPage - 1) * rowSize + rowSize;
-    const totalCount = total === 0 ? data.length : total;
-    let previousButtonDisabled = currentPage === 1;
+    let start = (page - 1) * rowSize + 1;
+    let end = (page - 1) * rowSize + rowSize;
+    const totalCount = count === 0 ? data.length : count;
+    let previousButtonDisabled = page === 1;
     let nextButtonDisabled = false;
     if (totalCount === 0) {
       start = 0;
