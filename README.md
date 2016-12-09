@@ -70,7 +70,8 @@ class MyComponent extends Component {
         onCellDoubleClick={this.handleCellDoubleClick}
         onFilterValueChange={this.handleFilterValueChange}
         onSortOrderChange={this.handleSortOrderChange}
-        total={100}
+        page={1}
+        count={100}
       />
     );
   }
