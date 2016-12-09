@@ -22,7 +22,7 @@ function getStyles(context) {
       opacity: 0.64,
     },
     headerToolbarSearchIcon: {
-      marginTop: 18,
+      marginTop: 12,
     },
     headerToolbarIconButton: {
       marginTop: 6,
@@ -30,12 +30,20 @@ function getStyles(context) {
     searchToolbarGroup: {
       width: '100%',
       display: 'flex',
+      alignItems: 'center',
     },
     searchInputTextField: {
       marginTop: 6,
       marginLeft: 8,
       width: '100%',
       minWidth: 60,
+    },
+    headerToolbarDefaultIcons: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    toolbarTitle: {
+      lineHeight: '72px',
     },
   };
 }
@@ -126,7 +134,7 @@ class DataTablesHeaderToolbar extends Component {
     let contentNode;
 
     if (mode === 'default') {
-      contentNode = (<ToolbarTitle text={title} />);
+      contentNode = (<ToolbarTitle style={styles.toolbarTitle} text={title} />);
     } else if (mode === 'filter') {
       contentNode = (
         <div style={styles.searchToolbarGroup}>
@@ -142,7 +150,7 @@ class DataTablesHeaderToolbar extends Component {
               value={filterValue}
             />
           </div>
-          <div>
+          <div style={styles.headerToolbarDefaultIcons}>
             <IconButton
               style={Object.assign(styles.headerToolbarIconButton, styles.icon)}
               onClick={this.handleClearClick}
