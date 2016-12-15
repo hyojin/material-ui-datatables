@@ -53,7 +53,16 @@ gulp.task('eslint', () => {
   .pipe(eslint.failAfterError());
 });
 
-gulp.task('compress', () => {
+gulp.task('browserify', () => {
+  process.env.NODE_ENV = 'production';   
+  return browserify('./demo/src/app.js', { debug: false })
+  .transform('babelify', { presets: ['es2015', 'react', 'stage-1'] })
+  .bundle()
+  .pipe(source('bundle.js'))
+  .pipe(gulp.dest('./demo/app'));
+});
+
+gulp.task('compress', ['browserify'], () => {
   return gulp.src('demo/app/bundle.js')
   .pipe(uglify({}))
   .pipe(gulp.dest('demo/app/'));

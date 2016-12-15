@@ -205,8 +205,8 @@ class Main extends Component {
                 onPreviousPageClick={this.handlePreviousPageClick}
                 onSortOrderChange={this.handleSortOrderChange}
                 onRowSizeChange={this.handleRowSizeChange}
-                currentPage={this.state.currentPage}
-                total={this.state.total}
+                page={this.state.currentPage}
+                count={this.state.total}
                 rowSize={this.state.rowSize}
                 rowSizeList={[5, 10, 15]}
               />
