@@ -132,7 +132,7 @@ class DataTables extends Component {
   }
 
   handleHeaderColumnClick = (event, rowIndex, columnIndex) => {
-    const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
+    const adjustedColumnIndex = columnIndex - 1;
     const column = this.props.columns[adjustedColumnIndex];
     if (column && column.sortable) {
       const {sort} = this.state;
