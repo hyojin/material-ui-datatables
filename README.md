@@ -1,6 +1,8 @@
 # Material-UI-Datatables
 
 [![npm](https://img.shields.io/npm/v/material-ui-datatables.svg)](https://www.npmjs.com/package/material-ui-datatables)
+[![Build Status](https://travis-ci.org/hyojin/material-ui-datatables.svg?branch=master)](https://travis-ci.org/hyojin/material-ui-datatables)
+[![Coverage Status](https://coveralls.io/repos/github/hyojin/material-ui-datatables/badge.svg?branch=master)](https://coveralls.io/github/hyojin/material-ui-datatables?branch=master)
 
 An another React Data tables component.  
 Material-UI-Datatables is a custom [React](https://facebook.github.io/react/) component using awesome [Material-UI](http://www.material-ui.com/). It provides filter and column sort and pagination features to display data mostly in desktop applications. You can check about the component in [Google's guideline](https://material.google.com/components/data-tables.html).
