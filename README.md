@@ -16,6 +16,35 @@ npm install material-ui-datatables
 ## Status
 Work in progress
 
+## Properties
+| Name                 | Type      | Default           | Description                                  |
+|----------------------|-----------|-------------------|----------------------------------------------|
+| columns              | array     |                   |                                              |
+| count                | number    | 0                 |                                              |
+| data                 | array     |                   |                                              |
+| enableSelectAll      | bool      | false             |                                              |
+| filterHintText       | string    | 'Search'          |                                              |
+| height               | string    | 'inherit'         |                                              |
+| multiSelectable      | bool      | false             |                                              |
+| onCellClick          | function  |                   |                                              |
+| onCellDoubleClick    | function  |                   |                                              |
+| onFilterValueChange  | function  |                   | Should set 'showHeaderToolbar' to true first |
+| onNextPageClick      | function  |                   |                                              |
+| onPreviousPageClick  | function  |                   |                                              |
+| onRowSelection       | function  |                   |                                              |
+| onRowSizeChange      | function  |                   |                                              |
+| onSortOrderChange    | function  |                   |                                              |
+| page                 | number    | 1                 |                                              |
+| rowSize              | number    | 10                |                                              |
+| rowSizeLabel         | string    | 'Rows per page:'  |                                              |
+| rowSizeList          | array     | [10, 30, 50, 100] |                                              |
+| selectable           | bool      | false             |                                              |
+| showCheckboxes       | bool      | false             |                                              |
+| showHeaderToolbar    | bool      | false             |                                              |
+| summaryLabelTemplate | function  |                   |                                              |
+| title                | string    |                   | Should set 'showHeaderToolbar' to true first |
+| toolbarIconRight     | node      |                   | Can be an array of IconButton nodes          |
+
 ## Usage
 ```jsx
 import React, {Component} from 'react';
