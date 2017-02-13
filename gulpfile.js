@@ -8,6 +8,7 @@ const browserSync = require('browser-sync').create();
 const babel = require('gulp-babel');
 const del = require('del');
 const copy = require('gulp-copy');
+const mocha = require('gulp-mocha');
 
 function map_error(err) {
   console.log('Error : ' + err.message);
@@ -68,6 +69,17 @@ gulp.task('build', () => {
 gulp.task('build:copy', function() {
   return gulp.src(['package.json', 'README.md', 'LICENSE'])
   .pipe(copy('build/', {prefix: 1}));
+});
+
+gulp.task('test', function() {
+  return gulp.src(['.mochasetup.js', 'test/**/*.spec.js'])
+  .pipe(babel({
+    presets: ['es2015', 'stage-1', 'react'],
+    plugins: ['transform-runtime']
+  }))
+  .pipe(mocha({
+    reporter: 'spec',
+  }));
 });
 
 gulp.task('clean:build', ['build:clean', 'build', 'build:copy']);
