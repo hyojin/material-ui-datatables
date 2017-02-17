@@ -4,3 +4,4 @@ node_modules/
 example/app/bundle.js
 build
 coverage/
+.nyc_output
