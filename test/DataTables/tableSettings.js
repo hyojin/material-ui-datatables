@@ -95,6 +95,36 @@ export const TABLE_COLUMNS_SORT_STYLE = [
   },
 ];
 
+export const TABLE_COLUMNS_CLASSNAME = [
+  {
+    key: 'name',
+    label: 'Dessert (100g serving)',
+    className: 'important-column',
+  }, {
+    key: 'calories',
+    label: 'Calories',
+    className: 'important-column',
+  }, {
+    key: 'fat',
+    label: 'Fat (g)',
+  }, {
+    key: 'carbs',
+    label: 'Carbs (g)',
+  }, {
+    key: 'protein',
+    label: 'Protein (g)',
+  }, {
+    key: 'sodium',
+    label: 'Sodium (mg)',
+  }, {
+    key: 'calcium',
+    label: 'Calcium (%)',
+  }, {
+    key: 'iron',
+    label: 'Iron (%)',
+  },
+];
+
 export const TABLE_DATA = [
   {
     name: 'Frozen yogurt',

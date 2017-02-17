@@ -125,6 +125,36 @@ const TABLE_COLUMNS_SORT_STYLE = [
   },
 ];
 
+const TABLE_COLUMNS_CLASSNAME = [
+  {
+    key: 'name',
+    label: 'Dessert (100g serving)',
+    className: 'important-column',
+  }, {
+    key: 'calories',
+    label: 'Calories',
+    className: 'important-column',
+  }, {
+    key: 'fat',
+    label: 'Fat (g)',
+  }, {
+    key: 'carbs',
+    label: 'Carbs (g)',
+  }, {
+    key: 'protein',
+    label: 'Protein (g)',
+  }, {
+    key: 'sodium',
+    label: 'Sodium (mg)',
+  }, {
+    key: 'calcium',
+    label: 'Calcium (%)',
+  }, {
+    key: 'iron',
+    label: 'Iron (%)',
+  },
+];
+
 const TABLE_DATA = [
   {
     name: 'Frozen yogurt',
@@ -406,6 +436,24 @@ class Main extends Component {
                     <InfoOutline />
                   </IconButton>
                 ]}
+              />
+            </Card>
+          </div>
+          <div style={styles.component}>
+            <h2>DataTables (Column class name)</h2>
+            <Card style={{margin: 12, textAlign: 'left'}}>
+              <CardHeader
+                title='Nutrition'
+                titleStyle={{fontSize: 20}}
+              />
+              <DataTables
+                height={'auto'}
+                selectable={false}
+                showRowHover={false}
+                columns={TABLE_COLUMNS_CLASSNAME}
+                data={TABLE_DATA}
+                showCheckboxes={false}
+                count={100}
               />
             </Card>
           </div>

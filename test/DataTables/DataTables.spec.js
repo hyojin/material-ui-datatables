@@ -15,7 +15,7 @@ import TextField from 'material-ui/TextField';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 
-import {TABLE_COLUMNS, TABLE_COLUMNS_TOOLTIP, TABLE_COLUMNS_SORT_STYLE, TABLE_DATA, styles} from './tableSettings';
+import {TABLE_COLUMNS, TABLE_COLUMNS_TOOLTIP, TABLE_COLUMNS_SORT_STYLE, TABLE_COLUMNS_CLASSNAME, TABLE_DATA, styles} from './tableSettings';
 import DataTables from '../../src/DataTables/DataTables';
 import DataTablesHeaderColumn from '../../src/DataTables/DataTablesHeaderColumn';
 import DataTablesRow from '../../src/DataTables/DataTablesRow';
@@ -323,6 +323,40 @@ describe('<DataTables />', function() {
       expect(wrapper.find(DataTablesHeaderToolbar).find(IconButton)).to.have.length(3);
       expect(wrapper.find(DataTablesHeaderToolbar).find(PersonAdd)).to.have.length(1);
       expect(wrapper.find(DataTablesHeaderToolbar).find(InfoOutline)).to.have.length(1);
+    });
+  });
+
+  describe('Column class name', function() {
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          height={'auto'}
+          selectable={true}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_CLASSNAME}
+          data={TABLE_DATA}
+          multiSelectable={true}
+          showCheckboxes={true}
+          enableSelectAll={true}
+          page={1}
+          count={11}
+          />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: React.PropTypes.object},
+        }
+      );
+    });
+
+    it('should have column class name', function() {
+      const headerColumns = wrapper.find(DataTablesHeaderColumn);
+      expect(headerColumns.getNodes()[0].props.className).to.equal('important-column');
+      expect(headerColumns.getNodes()[1].props.className).to.equal('important-column');
+      expect(headerColumns.getNodes()[2].props.className).to.equal(undefined);
     });
   });
 });

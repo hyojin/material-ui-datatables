@@ -308,6 +308,7 @@ class DataTables extends Component {
                     sortable={sortable}
                     sorted={sorted}
                     order={order}
+                    className={row.className}
                   >
                     <span>{row.label}</span>
                   </DataTablesHeaderColumn>
