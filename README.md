@@ -108,6 +108,7 @@ class MyComponent extends Component {
 | showHeaderToolbar    | bool      | false             |                                              |
 | summaryLabelTemplate | function  |                   |                                              |
 | title                | string    |                   | Should set 'showHeaderToolbar' to true first |
+| titleStyle           | object    |                   | Should set 'showHeaderToolbar' to true first |
 | toolbarIconRight     | node      |                   | Can be an array of IconButton nodes          |
 
 ## Column settings

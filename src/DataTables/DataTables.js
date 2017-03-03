@@ -89,6 +89,7 @@ class DataTables extends Component {
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
     title: PropTypes.string,
+    titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
   };
 
@@ -221,6 +222,7 @@ class DataTables extends Component {
   render() {
     const {
       title,
+      titleStyle,
       filterHintText,
       fixedHeader,
       fixedFooter,
@@ -270,6 +272,7 @@ class DataTables extends Component {
         <DataTablesHeaderToolbar
           filterHintText={filterHintText}
           title={title}
+          titleStyle={titleStyle}
           onFilterValueChange={this.handleFilterValueChange}
           toolbarIconRight={toolbarIconRight}
         />

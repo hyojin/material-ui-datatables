@@ -5,7 +5,7 @@ import sinon from 'sinon';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {TableHeader} from 'material-ui/Table';
-import Toolbar from 'material-ui/Toolbar';
+import {Toolbar, ToolbarTitle} from 'material-ui/Toolbar';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -14,6 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import {deepOrange500} from 'material-ui/styles/colors';
 
 import {TABLE_COLUMNS, TABLE_COLUMNS_TOOLTIP, TABLE_COLUMNS_SORT_STYLE, TABLE_COLUMNS_CLASSNAME, TABLE_DATA, styles} from './tableSettings';
 import DataTables from '../../src/DataTables/DataTables';
@@ -286,7 +287,7 @@ describe('<DataTables />', function() {
     });
   });
 
-  describe('Toolbar Icons', function() {
+  describe('Toolbar Icons & Styled title', function() {
     let wrapper;
     const muiTheme = getMuiTheme();
 
@@ -295,6 +296,7 @@ describe('<DataTables />', function() {
       wrapper = mount(
         <DataTables
           title={'Nutrition'}
+          titleStyle={styles.titleStyle}
           height={'auto'}
           selectable={false}
           showRowHover={true}
@@ -323,6 +325,13 @@ describe('<DataTables />', function() {
       expect(wrapper.find(DataTablesHeaderToolbar).find(IconButton)).to.have.length(3);
       expect(wrapper.find(DataTablesHeaderToolbar).find(PersonAdd)).to.have.length(1);
       expect(wrapper.find(DataTablesHeaderToolbar).find(InfoOutline)).to.have.length(1);
+    });
+
+    it('should have inline styles for title', function() {
+      expect(wrapper.find(ToolbarTitle).prop('style').fontSize).not.to.equal(undefined);
+      expect(wrapper.find(ToolbarTitle).prop('style').color).not.to.equal(undefined);
+      expect(wrapper.find(ToolbarTitle).prop('style').fontSize).to.equal(16);
+      expect(wrapper.find(ToolbarTitle).prop('style').color).to.equal(deepOrange500);
     });
   });
 

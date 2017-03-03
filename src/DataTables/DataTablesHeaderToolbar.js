@@ -56,6 +56,7 @@ class DataTablesHeaderToolbar extends Component {
     handleFilterValueChange: PropTypes.func,
     onFilterValueChange: PropTypes.func,
     title: PropTypes.string,
+    titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
   };
 
@@ -121,6 +122,7 @@ class DataTablesHeaderToolbar extends Component {
       filterHintText,
       toolbarIconRight,
       title, // eslint-disable-line no-unused-vars
+      titleStyle,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
 
@@ -134,7 +136,7 @@ class DataTablesHeaderToolbar extends Component {
     let contentNode;
 
     if (mode === 'default') {
-      contentNode = (<ToolbarTitle style={styles.toolbarTitle} text={title} />);
+      contentNode = (<ToolbarTitle style={Object.assign({}, styles.toolbarTitle, titleStyle)} text={title} />);
     } else if (mode === 'filter') {
       contentNode = (
         <div style={styles.searchToolbarGroup}>
