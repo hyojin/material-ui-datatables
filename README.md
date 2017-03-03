@@ -104,6 +104,7 @@ class MyComponent extends Component {
 | rowSizeLabel         | string    | 'Rows per page:'  |                                              |
 | rowSizeList          | array     | [10, 30, 50, 100] |                                              |
 | selectable           | bool      | false             |                                              |
+| selectedRows         | array     | []                |                                              |
 | showCheckboxes       | bool      | false             |                                              |
 | showHeaderToolbar    | bool      | false             |                                              |
 | summaryLabelTemplate | function  |                   |                                              |
