@@ -368,4 +368,43 @@ describe('<DataTables />', function() {
       expect(headerColumns.getNodes()[2].props.className).to.equal(undefined);
     });
   });
+
+  describe('Programmatically select rows', function() {
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          height={'auto'}
+          selectable={true}
+          selectedRows={[0, 2, 5]}
+          multiSelectable={true}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_CLASSNAME}
+          data={TABLE_DATA}
+          multiSelectable={true}
+          showCheckboxes={true}
+          enableSelectAll={true}
+          page={1}
+          count={11}
+          />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: React.PropTypes.object},
+        }
+      );
+    });
+
+    it('should render selected rows by default', function() {
+      const tableRows = wrapper.find(DataTablesRow);
+      expect(tableRows.getNodes()[0].props.selected).to.equal(true);
+      expect(tableRows.getNodes()[1].props.selected).to.equal(false);
+      expect(tableRows.getNodes()[2].props.selected).to.equal(true);
+      expect(tableRows.getNodes()[3].props.selected).to.equal(false);
+      expect(tableRows.getNodes()[4].props.selected).to.equal(false);
+      expect(tableRows.getNodes()[5].props.selected).to.equal(true);
+    });
+  });
 });

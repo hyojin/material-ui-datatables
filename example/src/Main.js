@@ -462,6 +462,26 @@ class Main extends Component {
               />
             </Card>
           </div>
+          <div style={styles.component}>
+            <h2>DataTables (Programmatically select rows)</h2>
+            <Card style={{margin: 12, textAlign: 'left'}}>
+              <CardHeader
+                title='Nutrition'
+                titleStyle={{fontSize: 20}}
+              />
+              <DataTables
+                height={'auto'}
+                selectable={true}
+                selectedRows={[0, 2, 5]}
+                multiSelectable={true}
+                showRowHover={false}
+                columns={TABLE_COLUMNS_CLASSNAME}
+                data={TABLE_DATA}
+                showCheckboxes={false}
+                count={100}
+              />
+            </Card>
+          </div>
         </div>
       </MuiThemeProvider>
     );

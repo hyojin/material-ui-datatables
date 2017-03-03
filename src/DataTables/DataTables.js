@@ -56,6 +56,14 @@ function getStyles(props, context) {
   };
 }
 
+function isRowSelected(index, selectedRows) {
+  if (Array.isArray(selectedRows)) {
+    return selectedRows.includes(index);
+  } else {
+    return false;
+  }
+}
+
 class DataTables extends Component {
   static muiName = 'DataTables';
 
@@ -83,6 +91,7 @@ class DataTables extends Component {
     rowSizeLabel: PropTypes.string,
     rowSizeList: PropTypes.array,
     selectable: PropTypes.bool,
+    selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
     showHeaderToolbar: PropTypes.bool,
     showRowHover: PropTypes.bool,
@@ -114,6 +123,7 @@ class DataTables extends Component {
     stripedRows: false,
     showRowHover: false,
     selectable: false,
+    selectedRows: [],
     multiSelectable: false,
     enableSelectAll: false,
     deselectOnClickaway: false,
@@ -327,7 +337,11 @@ class DataTables extends Component {
           >
             {data.map((row, index) => {
               return (
-                <DataTablesRow style={styles.tableRow} key={index} selected={row.selected}>
+                <DataTablesRow
+                  style={styles.tableRow}
+                  key={index}
+                  selected={isRowSelected(index, this.props.selectedRows)}
+                >
                   {columns.map((mrow, index) => {
                     return (
                       <DataTablesRowColumn
