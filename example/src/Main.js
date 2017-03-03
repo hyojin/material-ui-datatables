@@ -19,7 +19,11 @@ const styles = {
   },
   component: {
     margin: '60px 20px',
-  }
+  },
+  titleStyle: {
+    fontSize: 16,
+    color: deepOrange500,
+  },
 };
 
 const muiTheme = getMuiTheme({
@@ -412,10 +416,11 @@ class Main extends Component {
             </Card>
           </div>
           <div style={styles.component}>
-            <h2>DataTables (Toolbar Icons)</h2>
+            <h2>DataTables (Toolbar Icons & Styled title)</h2>
             <Card style={{margin: 12}}>
               <DataTables
                 title={'Nutrition'}
+                titleStyle={styles.titleStyle}
                 height={'auto'}
                 selectable={false}
                 showRowHover={true}

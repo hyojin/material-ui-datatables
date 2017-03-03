@@ -1,3 +1,5 @@
+import {deepOrange500} from 'material-ui/styles/colors';
+
 export const TABLE_COLUMNS = [
   {
     key: 'name',
@@ -221,9 +223,13 @@ export const TABLE_DATA = [
 
 export const styles = {
   footerToolbarItem: {
-     marginLeft: 8,
-     marginRight: 8,
-     alignItems: 'center',
-     display: 'flex',
-   },
+    marginLeft: 8,
+    marginRight: 8,
+    alignItems: 'center',
+    display: 'flex',
+  },
+  titleStyle: {
+    fontSize: 16,
+    color: deepOrange500,
+  },
 };
