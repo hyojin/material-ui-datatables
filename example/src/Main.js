@@ -482,6 +482,29 @@ class Main extends Component {
               />
             </Card>
           </div>
+          <div style={styles.component}>
+            <h2>DataTables (onRowSelection handler & onCellDoubleClick handler)</h2>
+            <Card style={{margin: 12, textAlign: 'left'}}>
+              <CardHeader
+                title='Nutrition'
+                titleStyle={{fontSize: 20}}
+              />
+              <DataTables
+                height={'auto'}
+                selectable={true}
+                showRowHover={true}
+                columns={TABLE_COLUMNS_TOOLTIP}
+                data={this.state.data}
+                page={this.state.page}
+                multiSelectable={false}
+                onRowSelection={this.handleRowSelection}
+                onCellDoubleClick={this.handleCellDoubleClick}
+                showCheckboxes={false}
+                enableSelectAll={false}
+                count={11}
+              />
+            </Card>
+          </div>
         </div>
       </MuiThemeProvider>
     );

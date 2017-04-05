@@ -179,8 +179,8 @@ class DataTables extends Component {
   }
 
   handleCellDoubleClick = (rowIndex, columnIndex, event) => {
-    const {onCellDoubleClick, selectable} = this.props;
-    if (onCellDoubleClick && !selectable) {
+    const {onCellDoubleClick} = this.props;
+    if (onCellDoubleClick) {
       const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
       onCellDoubleClick(
         rowIndex,
