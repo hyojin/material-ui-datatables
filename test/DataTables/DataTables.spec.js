@@ -143,9 +143,12 @@ describe('<DataTables />', function() {
       }
     });
 
-    it('should call row select handler', function() {
+    it('should call row select handler', function(done) {
       wrapper.find(DataTablesRowColumn).first().simulate('click');
-      expect(handleRowSelection).to.have.property('callCount', 1);
+      setTimeout(() => {
+        expect(handleRowSelection).to.have.property('callCount', 1);
+        done();
+      }, 500);
     });
     it('should render tooltips', function() {
       const headerColumns = wrapper.find(DataTablesHeaderColumn);
@@ -213,12 +216,17 @@ describe('<DataTables />', function() {
     it('should render data tables title', function() {
       expect(wrapper.find(DataTablesHeaderToolbar).prop('title')).to.equal('Nutrition');
     });
-    it('should call click handler', function() {
+    it('should call click handler', function(done) {
       wrapper.find(DataTablesRowColumn).first().simulate('click');
-      expect(handleCellClick).to.have.property('callCount', 1);
+      setTimeout(() => {
+        expect(handleCellClick).to.have.property('callCount', 1);
+        done();
+      }, 500);
     });
     it('should call dobule click handler', function() {
-      wrapper.find(DataTablesRowColumn).first().simulate('dblclick');
+      // simulate double click
+      wrapper.find(DataTablesRowColumn).first().simulate('click');
+      wrapper.find(DataTablesRowColumn).first().simulate('click');
       expect(handleCellDoubleClick).to.have.property('callCount', 1);
     });
     it('should call filter value change handler', function(done) {
@@ -405,6 +413,60 @@ describe('<DataTables />', function() {
       expect(tableRows.getNodes()[3].props.selected).to.equal(false);
       expect(tableRows.getNodes()[4].props.selected).to.equal(false);
       expect(tableRows.getNodes()[5].props.selected).to.equal(true);
+    });
+  });
+
+  describe('onRowSelection handler & onCellDoubleClick handler', function() {
+    const handleRowSelection = sinon.spy();
+    const handleCellDoubleClick = sinon.spy();
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          title={'Nutrition'}
+          height={'auto'}
+          selectable={true}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_SORT_STYLE}
+          data={TABLE_DATA}
+          showCheckboxes={false}
+          showHeaderToolbar={true}
+          enableSelectAll={false}
+          onCellDoubleClick={handleCellDoubleClick}
+          onRowSelection={handleRowSelection}
+          count={100}
+          />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: React.PropTypes.object},
+        }
+      );
+
+      // dummy
+      global.window.getSelection = function() {
+        return {
+          removeAllRanges: function() {
+          },
+        };
+      }
+    });
+
+    it('should call row select handler', function(done) {
+      wrapper.find(DataTablesRowColumn).first().simulate('click');
+      setTimeout(() => {
+        expect(handleRowSelection).to.have.property('callCount', 1);
+        done();
+      }, 500);
+    });
+
+    it('should call dobule click handler', function() {
+      // simulate double click
+      wrapper.find(DataTablesRowColumn).first().simulate('click');
+      wrapper.find(DataTablesRowColumn).first().simulate('click');
+      expect(handleCellDoubleClick).to.have.property('callCount', 1);
     });
   });
 });
