@@ -232,4 +232,7 @@ export const styles = {
     fontSize: 16,
     color: deepOrange500,
   },
+  footerToolbarStyle: {
+    padding: '0 100px',
+  },
 };

@@ -295,7 +295,7 @@ describe('<DataTables />', function() {
     });
   });
 
-  describe('Toolbar Icons & Styled title', function() {
+  describe('Toolbar Icons & Styled title & footerToolbarStyle', function() {
     let wrapper;
     const muiTheme = getMuiTheme();
 
@@ -312,6 +312,7 @@ describe('<DataTables />', function() {
           data={TABLE_DATA}
           showCheckboxes={false}
           showHeaderToolbar={true}
+          footerToolbarStyle={styles.footerToolbarStyle}
           count={100}
           toolbarIconRight={[
             <IconButton>
@@ -340,6 +341,10 @@ describe('<DataTables />', function() {
       expect(wrapper.find(ToolbarTitle).prop('style').color).not.to.equal(undefined);
       expect(wrapper.find(ToolbarTitle).prop('style').fontSize).to.equal(16);
       expect(wrapper.find(ToolbarTitle).prop('style').color).to.equal(deepOrange500);
+    });
+
+    it('should have footerToolbar styles defined', function() {
+      expect(wrapper.find(Toolbar).at(1).prop('style').padding).to.equal('0 100px');
     });
   });
 
