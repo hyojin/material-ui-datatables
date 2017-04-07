@@ -76,6 +76,7 @@ class DataTables extends Component {
     filterHintText: PropTypes.string,
     fixedFooter: PropTypes.bool,
     fixedHeader: PropTypes.bool,
+    footerToolbarStyle: PropTypes.object,
     height: PropTypes.string,
     multiSelectable: PropTypes.bool,
     onCellClick: PropTypes.func,
@@ -236,6 +237,7 @@ class DataTables extends Component {
       filterHintText,
       fixedHeader,
       fixedFooter,
+      footerToolbarStyle,
       stripedRows,
       showRowHover,
       selectable,
@@ -357,7 +359,7 @@ class DataTables extends Component {
             })}
           </DataTablesTableBody>
         </DataTablesTable>
-        <Toolbar style={styles.footerToolbar}>
+        <Toolbar style={Object.assign({}, styles.footerToolbar, footerToolbarStyle)}>
           <div style={styles.footerControlGroup}>
             <div style={styles.footerToolbarItem}>
               <div>{rowSizeLabel}</div>

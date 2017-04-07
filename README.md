@@ -89,6 +89,7 @@ class MyComponent extends Component {
 | data                 | array     |                   |                                              |
 | enableSelectAll      | bool      | false             |                                              |
 | filterHintText       | string    | 'Search'          |                                              |
+| footerToolbarStyle   | object    |                   |                                              |
 | height               | string    | 'inherit'         |                                              |
 | multiSelectable      | bool      | false             |                                              |
 | onCellClick          | function  |                   |                                              |
