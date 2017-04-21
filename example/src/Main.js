@@ -27,6 +27,15 @@ const styles = {
   footerToolbarStyle: {
     padding: '0 100px',
   },
+  tableStyle: {
+    tableLayout: 'auto',
+  },
+  tableBodyStyle: {
+    overflowX: 'auto',
+  },
+  tableWrapperStyle: {
+    padding: 5,
+  },
 };
 
 const muiTheme = getMuiTheme({
@@ -419,7 +428,7 @@ class Main extends Component {
             </Card>
           </div>
           <div style={styles.component}>
-            <h2>DataTables (Toolbar Icons & Styled title & footerToolbarStyle)</h2>
+            <h2>DataTables (Toolbar Icons & Styled title & Styled table)</h2>
             <Card style={{margin: 12}}>
               <DataTables
                 title={'Nutrition'}
@@ -432,6 +441,9 @@ class Main extends Component {
                 showCheckboxes={false}
                 showHeaderToolbar={true}
                 footerToolbarStyle={styles.footerToolbarStyle}
+                tableBodyStyle={styles.tableBodyStyle}
+                tableStyle={styles.tableStyle}
+                tableWrapperStyle={styles.tableWrapperStyle}
                 count={100}
                 toolbarIconRight={[
                   <IconButton

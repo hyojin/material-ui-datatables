@@ -235,4 +235,13 @@ export const styles = {
   footerToolbarStyle: {
     padding: '0 100px',
   },
+  tableStyle: {
+    tableLayout: 'auto',
+  },
+  tableBodyStyle: {
+    overflowX: 'auto',
+  },
+  tableWrapperStyle: {
+    padding: 5,
+  },
 };

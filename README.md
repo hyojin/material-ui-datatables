@@ -109,6 +109,9 @@ class MyComponent extends Component {
 | showCheckboxes       | bool      | false             |                                              |
 | showHeaderToolbar    | bool      | false             |                                              |
 | summaryLabelTemplate | function  |                   |                                              |
+| tableBodyStyle       | object    |                   |                                              |
+| tableStyle           | object    |                   |                                              |
+| tableWrapperStyle    | object    |                   |                                              |
 | title                | string    |                   | Should set 'showHeaderToolbar' to true first |
 | titleStyle           | object    |                   | Should set 'showHeaderToolbar' to true first |
 | toolbarIconRight     | node      |                   | Can be an array of IconButton nodes          |
