@@ -98,6 +98,9 @@ class DataTables extends Component {
     showRowHover: PropTypes.bool,
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
+    tableBodyStyle: PropTypes.object,
+    tableStyle: PropTypes.object,
+    tableWrapperStyle: PropTypes.object,
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
@@ -256,6 +259,9 @@ class DataTables extends Component {
       page,
       toolbarIconRight,
       count,
+      tableStyle,
+      tableBodyStyle,
+      tableWrapperStyle,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
 
@@ -303,6 +309,9 @@ class DataTables extends Component {
           onCellClick={this.handleCellClick}
           onCellDoubleClick={this.handleCellDoubleClick}
           onRowSelection={this.handleRowSelection}
+          style={tableStyle}
+          bodyStyle={tableBodyStyle}
+          wrapperStyle={tableWrapperStyle}
         >
           <TableHeader
             displaySelectAll={showCheckboxes}

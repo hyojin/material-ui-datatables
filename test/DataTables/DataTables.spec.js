@@ -22,6 +22,7 @@ import DataTablesHeaderColumn from '../../src/DataTables/DataTablesHeaderColumn'
 import DataTablesRow from '../../src/DataTables/DataTablesRow';
 import DataTablesRowColumn from '../../src/DataTables/DataTablesRowColumn';
 import DataTablesHeaderToolbar from '../../src/DataTables/DataTablesHeaderToolbar';
+import DataTablesTable from '../../src/DataTables/DataTablesTable';
 
 describe('<DataTables />', function() {
   describe('Basic', function() {
@@ -295,7 +296,7 @@ describe('<DataTables />', function() {
     });
   });
 
-  describe('Toolbar Icons & Styled title & footerToolbarStyle', function() {
+  describe('Toolbar Icons & Styled title & Styled table', function() {
     let wrapper;
     const muiTheme = getMuiTheme();
 
@@ -313,6 +314,9 @@ describe('<DataTables />', function() {
           showCheckboxes={false}
           showHeaderToolbar={true}
           footerToolbarStyle={styles.footerToolbarStyle}
+          tableBodyStyle={styles.tableBodyStyle}
+          tableStyle={styles.tableStyle}
+          tableWrapperStyle={styles.tableWrapperStyle}
           count={100}
           toolbarIconRight={[
             <IconButton>
@@ -345,6 +349,18 @@ describe('<DataTables />', function() {
 
     it('should have footerToolbar styles defined', function() {
       expect(wrapper.find(Toolbar).at(1).prop('style').padding).to.equal('0 100px');
+    });
+
+    it('should have table styles defined', function() {
+      expect(wrapper.find(DataTablesTable).at(0).prop('style').tableLayout).to.equal('auto');
+    });
+
+    it('should have table body styles defined', function() {
+      expect(wrapper.find(DataTablesTable).at(0).prop('bodyStyle').overflowX).to.equal('auto');
+    });
+
+    it('should have table wrapper styles defined', function() {
+      expect(wrapper.find(DataTablesTable).at(0).prop('wrapperStyle').padding).to.equal(5);
     });
   });
 
