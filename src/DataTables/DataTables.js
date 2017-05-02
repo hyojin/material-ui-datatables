@@ -99,6 +99,8 @@ class DataTables extends Component {
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
     tableBodyStyle: PropTypes.object,
+    tableRowColumnStyle: PropTypes.object,
+    tableRowStyle: PropTypes.object,
     tableStyle: PropTypes.object,
     tableWrapperStyle: PropTypes.object,
     title: PropTypes.string,
@@ -261,6 +263,8 @@ class DataTables extends Component {
       count,
       tableStyle,
       tableBodyStyle,
+      tableRowColumnStyle,
+      tableRowStyle,
       tableWrapperStyle,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
@@ -349,14 +353,14 @@ class DataTables extends Component {
             {data.map((row, index) => {
               return (
                 <DataTablesRow
-                  style={styles.tableRow}
+                  style={Object.assign({}, styles.tableRow, tableRowStyle)}
                   key={index}
                   selected={isRowSelected(index, this.props.selectedRows)}
                 >
                   {columns.map((mrow, index) => {
                     return (
                       <DataTablesRowColumn
-                        style={mrow.style}
+                        style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, mrow.style)}
                         key={index}
                       >
                         {row[mrow.key]}
