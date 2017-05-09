@@ -99,6 +99,10 @@ class DataTables extends Component {
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
     tableBodyStyle: PropTypes.object,
+    tableHeaderColumnStyle: PropTypes.object,
+    tableHeaderStyle: PropTypes.object,
+    tableRowColumnStyle: PropTypes.object,
+    tableRowStyle: PropTypes.object,
     tableStyle: PropTypes.object,
     tableWrapperStyle: PropTypes.object,
     title: PropTypes.string,
@@ -261,6 +265,10 @@ class DataTables extends Component {
       count,
       tableStyle,
       tableBodyStyle,
+      tableHeaderColumnStyle,
+      tableHeaderStyle,
+      tableRowColumnStyle,
+      tableRowStyle,
       tableWrapperStyle,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
@@ -317,24 +325,28 @@ class DataTables extends Component {
             displaySelectAll={showCheckboxes}
             adjustForCheckbox={showCheckboxes}
             enableSelectAll={enableSelectAll}
+            style={Object.assign({}, styles.tableHeader, tableHeaderStyle)}
           >
-            <TableRow onCellClick={this.handleHeaderColumnClick}>
-              {columns.map((row, index) => {
-                const style = Object.assign({}, styles.tableHeaderColumn, row.style || {});
-                const sortable = row.sortable;
-                const sorted = this.state.sort.column === row.key;
+            <TableRow
+              onCellClick={this.handleHeaderColumnClick}
+              style={Object.assign({}, styles.tableRow, tableRowStyle)}
+            >
+              {columns.map((column, index) => {
+                const style = Object.assign({}, styles.tableHeaderColumn, tableHeaderColumnStyle, column.style || {});
+                const sortable = column.sortable;
+                const sorted = this.state.sort.column === column.key;
                 const order = sorted ? this.state.sort.order : 'asc';
                 return (
                   <DataTablesHeaderColumn
                     key={index}
                     style={style}
-                    tooltip={row.tooltip}
+                    tooltip={column.tooltip}
                     sortable={sortable}
                     sorted={sorted}
                     order={order}
-                    className={row.className}
+                    className={column.className}
                   >
-                    <span>{row.label}</span>
+                    <span>{column.label}</span>
                   </DataTablesHeaderColumn>
                 );
               }, this)}
@@ -349,17 +361,17 @@ class DataTables extends Component {
             {data.map((row, index) => {
               return (
                 <DataTablesRow
-                  style={styles.tableRow}
+                  style={Object.assign({}, styles.tableRow, tableRowStyle)}
                   key={index}
                   selected={isRowSelected(index, this.props.selectedRows)}
                 >
-                  {columns.map((mrow, index) => {
+                  {columns.map((column, index) => {
                     return (
                       <DataTablesRowColumn
-                        style={mrow.style}
+                        style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, column.style)}
                         key={index}
                       >
-                        {row[mrow.key]}
+                        {row[column.key]}
                       </DataTablesRowColumn>
                     );
                   })}
