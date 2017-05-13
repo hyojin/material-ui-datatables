@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import sinon from 'sinon';
@@ -7,7 +8,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {TableHeader} from 'material-ui/Table';
 import {Toolbar, ToolbarTitle} from 'material-ui/Toolbar';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -15,14 +15,24 @@ import TextField from 'material-ui/TextField';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import {deepOrange500} from 'material-ui/styles/colors';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import {TABLE_COLUMNS, TABLE_COLUMNS_TOOLTIP, TABLE_COLUMNS_SORT_STYLE, TABLE_COLUMNS_CLASSNAME, TABLE_DATA, styles} from './tableSettings';
+import {
+  TABLE_COLUMNS,
+    TABLE_COLUMNS_TOOLTIP,
+    TABLE_COLUMNS_SORT_STYLE,
+    TABLE_COLUMNS_CLASSNAME,
+    TABLE_DATA,
+    styles,
+} from './tableSettings';
 import DataTables from '../../src/DataTables/DataTables';
 import DataTablesHeaderColumn from '../../src/DataTables/DataTablesHeaderColumn';
 import DataTablesRow from '../../src/DataTables/DataTablesRow';
 import DataTablesRowColumn from '../../src/DataTables/DataTablesRowColumn';
 import DataTablesHeaderToolbar from '../../src/DataTables/DataTablesHeaderToolbar';
 import DataTablesTable from '../../src/DataTables/DataTablesTable';
+
+injectTapEventPlugin();
 
 describe('<DataTables />', function() {
   describe('Basic', function() {
@@ -40,7 +50,7 @@ describe('<DataTables />', function() {
           data={TABLE_DATA}
           showCheckboxes={false}
           count={100}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
         }
@@ -128,10 +138,10 @@ describe('<DataTables />', function() {
           enableSelectAll={true}
           page={1}
           count={11}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
 
@@ -141,7 +151,7 @@ describe('<DataTables />', function() {
           removeAllRanges: function() {
           },
         };
-      }
+      };
     });
 
     it('should call row select handler', function(done) {
@@ -195,10 +205,10 @@ describe('<DataTables />', function() {
           onRowSizeChange={handleRowSizeChange}
           onSortOrderChange={handleSortOrderChange}
           count={100}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
 
@@ -208,7 +218,7 @@ describe('<DataTables />', function() {
           removeAllRanges: function() {
           },
         };
-      }
+      };
     });
 
     it('should render header tool bar', function() {
@@ -232,7 +242,8 @@ describe('<DataTables />', function() {
     });
     it('should call filter value change handler', function(done) {
       wrapper.find(DataTablesHeaderToolbar).find(IconButton).simulate('click');
-      wrapper.find(DataTablesHeaderToolbar).find(TextField).find('input').simulate('change', {target: {value: 'dummy'}});
+      wrapper.find(DataTablesHeaderToolbar).find(TextField).find('input')
+          .simulate('change', {target: {value: 'dummy'}});
       setTimeout(() => {
         expect(handleFilterValueChange).to.have.property('callCount', 1);
         expect(handleFilterValueChange.calledWith('dummy')).to.equal(true);
@@ -269,14 +280,16 @@ describe('<DataTables />', function() {
           data={TABLE_DATA}
           filterHintText={'検索'}
           rowSizeLabel={'ページサイズ'}
-          summaryLabelTemplate={(start, end, count) => {return `${start} - ${end} ${count}件`}}
+          summaryLabelTemplate={
+            (start, end, count) => `${start} - ${end} ${count}件`
+          }
           showCheckboxes={false}
           showHeaderToolbar={true}
           count={100}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
     });
@@ -285,10 +298,18 @@ describe('<DataTables />', function() {
       expect(wrapper.find(DataTablesHeaderToolbar).prop('title')).to.equal('ニュートリション');
     });
     it('should render row size label with customized label', function() {
-      expect(wrapper.find({style: styles.footerToolbarItem}).at(0).props().children.props.children).to.equal('ページサイズ');
+      expect(
+          wrapper.find({style: styles.footerToolbarItem})
+          .at(0).props().children.props.children
+      )
+          .to.equal('ページサイズ');
     });
     it('should render summary label with customized label', function() {
-      expect(wrapper.find({style: styles.footerToolbarItem}).at(1).props().children.props.children).to.equal('1 - 10 100件');
+      expect(
+          wrapper.find({style: styles.footerToolbarItem})
+          .at(1).props().children.props.children
+      )
+          .to.equal('1 - 10 100件');
     });
     it('should render search hint with customized text', function() {
       wrapper.find(DataTablesHeaderToolbar).find(IconButton).simulate('click');
@@ -324,12 +345,12 @@ describe('<DataTables />', function() {
             </IconButton>,
             <IconButton>
               <InfoOutline />
-            </IconButton>
+            </IconButton>,
           ]}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
     });
@@ -382,10 +403,10 @@ describe('<DataTables />', function() {
           enableSelectAll={true}
           page={1}
           count={11}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
     });
@@ -409,7 +430,6 @@ describe('<DataTables />', function() {
           height={'auto'}
           selectable={true}
           selectedRows={[0, 2, 5]}
-          multiSelectable={true}
           showRowHover={true}
           columns={TABLE_COLUMNS_CLASSNAME}
           data={TABLE_DATA}
@@ -418,10 +438,10 @@ describe('<DataTables />', function() {
           enableSelectAll={true}
           page={1}
           count={11}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
     });
@@ -459,10 +479,10 @@ describe('<DataTables />', function() {
           onCellDoubleClick={handleCellDoubleClick}
           onRowSelection={handleRowSelection}
           count={100}
-          />,
+        />,
         {
           context: {muiTheme: muiTheme},
-          childContextTypes: {muiTheme: React.PropTypes.object},
+          childContextTypes: {muiTheme: PropTypes.object},
         }
       );
 
@@ -472,7 +492,7 @@ describe('<DataTables />', function() {
           removeAllRanges: function() {
           },
         };
-      }
+      };
     });
 
     it('should call row select handler', function(done) {
