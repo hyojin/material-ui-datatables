@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {TableHeader, TableRow} from 'material-ui/Table';
 import {Toolbar} from 'material-ui/Toolbar';
 import DropDownMenu from 'material-ui/DropDownMenu';
