@@ -61,7 +61,7 @@ function isRowSelected(index, selectedRows) {
   if (Array.isArray(selectedRows)) {
     return selectedRows.includes(index);
   } else {
-    return false;
+    return undefined;
   }
 }
 
@@ -132,7 +132,7 @@ class DataTables extends Component {
     stripedRows: false,
     showRowHover: false,
     selectable: false,
-    selectedRows: [],
+    selectedRows: undefined,
     multiSelectable: false,
     enableSelectAll: false,
     deselectOnClickaway: false,
