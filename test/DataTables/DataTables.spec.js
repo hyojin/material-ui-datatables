@@ -15,7 +15,6 @@ import TextField from 'material-ui/TextField';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import {deepOrange500} from 'material-ui/styles/colors';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import {
   TABLE_COLUMNS,
@@ -31,8 +30,6 @@ import DataTablesRow from '../../src/DataTables/DataTablesRow';
 import DataTablesRowColumn from '../../src/DataTables/DataTablesRowColumn';
 import DataTablesHeaderToolbar from '../../src/DataTables/DataTablesHeaderToolbar';
 import DataTablesTable from '../../src/DataTables/DataTablesTable';
-
-injectTapEventPlugin();
 
 describe('<DataTables />', function() {
   describe('Basic', function() {
@@ -158,6 +155,7 @@ describe('<DataTables />', function() {
       wrapper.find(DataTablesRowColumn).first().simulate('click');
       setTimeout(() => {
         expect(handleRowSelection).to.have.property('callCount', 1);
+        expect(wrapper.find(DataTablesRow).first().prop('selected')).to.equal(true);
         done();
       }, 500);
     });

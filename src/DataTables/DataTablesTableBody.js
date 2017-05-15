@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TableBody} from 'material-ui/Table';
+import ClickAwayListener from 'material-ui/internal/ClickAwayListener';
 
 class DataTablesTableBody extends TableBody {
   static muiName = 'TableBody';
@@ -156,6 +157,38 @@ class DataTablesTableBody extends TableBody {
       this.props.onCellDoubleClick(rowNumber, this.getColumnId(columnNumber), event);
     }
   };
+
+  render() {
+    const {
+      style,
+      allRowsSelected, // eslint-disable-line no-unused-vars
+      multiSelectable, // eslint-disable-line no-unused-vars
+      onCellClick, // eslint-disable-line no-unused-vars
+      onCellDoubleClick, // eslint-disable-line no-unused-vars
+      onCellHover, // eslint-disable-line no-unused-vars
+      onCellHoverExit, // eslint-disable-line no-unused-vars
+      onRowHover, // eslint-disable-line no-unused-vars
+      onRowHoverExit, // eslint-disable-line no-unused-vars
+      onRowSelection, // eslint-disable-line no-unused-vars
+      selectable, // eslint-disable-line no-unused-vars
+      deselectOnClickaway, // eslint-disable-line no-unused-vars
+      showRowHover, // eslint-disable-line no-unused-vars
+      stripedRows, // eslint-disable-line no-unused-vars
+      displayRowCheckbox, // eslint-disable-line no-unused-vars
+      preScanRows, // eslint-disable-line no-unused-vars
+      ...other
+    } = this.props;
+
+    const {prepareStyles} = this.context.muiTheme;
+
+    return (
+      <ClickAwayListener onClickAway={this.handleClickAway}>
+        <tbody style={prepareStyles(Object.assign({}, style))} {...other}>
+          {this.createRows()}
+        </tbody>
+      </ClickAwayListener>
+    );
+  }
 }
 
 export default DataTablesTableBody;
