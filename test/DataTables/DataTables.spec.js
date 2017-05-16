@@ -508,4 +508,85 @@ describe('<DataTables />', function() {
       expect(handleCellDoubleClick).to.have.property('callCount', 1);
     });
   });
+
+  describe( 'row size toolbar', function() {
+    const muiTheme = getMuiTheme();
+    describe( 'when showRowSizeToolbar = false', function() {
+      let wrapper;
+      before(function() {
+        wrapper = mount(
+          <DataTables
+            height={'auto'}
+            selectable={true}
+            showRowHover={true}
+            columns={TABLE_COLUMNS_CLASSNAME}
+            data={TABLE_DATA}
+            multiSelectable={true}
+            showCheckboxes={true}
+            enableSelectAll={true}
+            showRowSizeToolbar={false}
+            page={1}
+            count={11}
+          />,
+          {
+            context: {muiTheme: muiTheme},
+            childContextTypes: {muiTheme: PropTypes.object},
+          }
+        );
+      } );
+
+      it('should not render row size label', function() {
+        expect(wrapper.find({style: styles.footerToolbarItem})).to.have.length(2);
+      });
+
+      it('should not render row size menu', function() {
+        expect(wrapper.find(DropDownMenu)).to.have.length(0);
+      });
+
+      it('should not render any row size items', function() {
+        const rowSizeItems = wrapper.find(MenuItem);
+        expect(rowSizeItems).to.have.length(0);
+      });
+    } );
+
+    describe( 'when rowSizeList is empty', function() {
+      let wrapper;
+      before(function() {
+        wrapper = mount(
+          <DataTables
+            height={'auto'}
+            selectable={true}
+            showRowHover={true}
+            columns={TABLE_COLUMNS_CLASSNAME}
+            data={TABLE_DATA}
+            multiSelectable={true}
+            showCheckboxes={true}
+            enableSelectAll={true}
+            page={1}
+            count={11}
+            rowSizeList={[]}
+            rowSize={10}
+          />,
+          {
+            context: {muiTheme: muiTheme},
+            childContextTypes: {muiTheme: PropTypes.object},
+          }
+        );
+      } );
+
+      it('should render row size label', function() {
+        expect(wrapper.find({style: styles.footerToolbarItem})).to.have.length(3);
+      });
+
+      it('should not render row size menu', function() {
+        expect(wrapper.find(DropDownMenu)).to.have.length(0);
+      });
+
+      it('should render row size value', function() {
+        const rowSizeItems = wrapper.find('.rowSizeValue');
+        expect(rowSizeItems.text()).to.equal('10');
+      });
+    } );
+
+  } );
 });
