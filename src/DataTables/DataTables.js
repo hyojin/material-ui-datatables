@@ -54,6 +54,9 @@ function getStyles(props, context) {
     rowSizeMenu: {
       color: tableHeaderColumn.textColor,
     },
+    rowSizeControlsWrapper: {
+      display: 'flex',
+    },
   };
 }
 
@@ -314,7 +317,7 @@ class DataTables extends Component {
     let rowSizeControls = null;
     if (showRowSizeControls) {
       rowSizeControls = (
-        <div>
+        <div style={styles.rowSizeControlsWrapper}>
           <div style={styles.footerToolbarItem}>
             <div>{rowSizeLabel}</div>
           </div>
