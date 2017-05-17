@@ -82,6 +82,7 @@ class DataTables extends Component {
     fixedHeader: PropTypes.bool,
     footerToolbarStyle: PropTypes.object,
     height: PropTypes.string,
+    initialSort: PropTypes.object,
     multiSelectable: PropTypes.bool,
     onCellClick: PropTypes.func,
     onCellDoubleClick: PropTypes.func,
@@ -95,12 +96,12 @@ class DataTables extends Component {
     rowSize: PropTypes.number,
     rowSizeLabel: PropTypes.string,
     rowSizeList: PropTypes.array,
-    showRowSizeControls: PropTypes.bool,
     selectable: PropTypes.bool,
     selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
     showHeaderToolbar: PropTypes.bool,
     showRowHover: PropTypes.bool,
+    showRowSizeControls: PropTypes.bool,
     stripedRows: PropTypes.bool,
     summaryLabelTemplate: PropTypes.func,
     tableBodyStyle: PropTypes.object,
@@ -113,7 +114,6 @@ class DataTables extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
-    initialSort: PropTypes.object,
   };
 
   static contextTypes = {
@@ -148,7 +148,7 @@ class DataTables extends Component {
     initialSort: {
       column: '',
       order: 'asc',
-    }
+    },
   };
 
   constructor(props, context) {
@@ -322,8 +322,7 @@ class DataTables extends Component {
             <div>{rowSizeLabel}</div>
           </div>
           {
-            rowSizeList.length > 0
-            ?
+            rowSizeList.length > 0 ?
             (
               <DropDownMenu
                 labelStyle={styles.rowSizeMenu}
@@ -340,9 +339,8 @@ class DataTables extends Component {
                   );
                 })}
               </DropDownMenu>
-            )
-            :
-            <span className='rowSizeValue'>{rowSize}</span>
+            ) :
+            null
           }
         </div>
       );

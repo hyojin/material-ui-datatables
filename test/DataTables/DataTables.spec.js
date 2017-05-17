@@ -581,11 +581,6 @@ describe('<DataTables />', function() {
       it('should not render row size menu', function() {
         expect(wrapper.find(DropDownMenu)).to.have.length(0);
       });
-
-      it('should render row size value', function() {
-        const rowSizeItems = wrapper.find('.rowSizeValue');
-        expect(rowSizeItems.text()).to.equal('10');
-      });
     });
   });
 });
