@@ -91,6 +91,7 @@ class MyComponent extends Component {
 | filterHintText       | string    | 'Search'          |                                              |
 | footerToolbarStyle   | object    |                   |                                              |
 | height               | string    | 'inherit'         |                                              |
+| initialSort          | object    |                   | {column: 'column key', order: 'asc or desc'} |
 | multiSelectable      | bool      | false             |                                              |
 | onCellClick          | function  |                   |                                              |
 | onCellDoubleClick    | function  |                   |                                              |
@@ -108,8 +109,14 @@ class MyComponent extends Component {
 | selectedRows         | array     | []                |                                              |
 | showCheckboxes       | bool      | false             |                                              |
 | showHeaderToolbar    | bool      | false             |                                              |
+| showRowHover         | bool      | false             |                                              |
+| showRowSizeControls  | bool      | false             |                                              |
 | summaryLabelTemplate | function  |                   |                                              |
 | tableBodyStyle       | object    |                   |                                              |
+| tableHeaderColumnStyle | object  |                   |                                              |
+| tableHeaderStyle     | object    |                   |                                              |
+| tableRowColumnStyle  | object    |                   |                                              |
+| tableRowStyle        | object    |                   |                                              |
 | tableStyle           | object    |                   |                                              |
 | tableWrapperStyle    | object    |                   |                                              |
 | title                | string    |                   | Should set 'showHeaderToolbar' to true first |
