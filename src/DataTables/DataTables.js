@@ -92,7 +92,7 @@ class DataTables extends Component {
     rowSize: PropTypes.number,
     rowSizeLabel: PropTypes.string,
     rowSizeList: PropTypes.array,
-    showRowSizeToolbar: PropTypes.bool,
+    showRowSizeControls: PropTypes.bool,
     selectable: PropTypes.bool,
     selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
@@ -124,7 +124,7 @@ class DataTables extends Component {
     summaryLabelTemplate: (start, end, count) => {
       return `${start} - ${end} of ${count}`;
     },
-    showRowSizeToolbar: true,
+    showRowSizeControls: true,
     filterHintText: 'Search',
     columns: [],
     data: [],
@@ -262,7 +262,7 @@ class DataTables extends Component {
       rowSize,
       rowSizeLabel,
       rowSizeList,
-      showRowSizeToolbar,
+      showRowSizeControls,
       summaryLabelTemplate,
       columns,
       data,
@@ -311,9 +311,9 @@ class DataTables extends Component {
       );
     }
 
-    let rowSizeToolbar = null;
-    if (showRowSizeToolbar) {
-      rowSizeToolbar = (
+    let rowSizeControls = null;
+    if (showRowSizeControls) {
+      rowSizeControls = (
         <div>
           <div style={styles.footerToolbarItem}>
             <div>{rowSizeLabel}</div>
@@ -422,7 +422,7 @@ class DataTables extends Component {
         </DataTablesTable>
         <Toolbar style={Object.assign({}, styles.footerToolbar, footerToolbarStyle)}>
           <div style={styles.footerControlGroup}>
-            {rowSizeToolbar}
+            {rowSizeControls}
             <div style={styles.footerToolbarItem}>
               <div>{summaryLabelTemplate(start, end, totalCount)}</div>
             </div>
