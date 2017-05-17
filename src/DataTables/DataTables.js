@@ -109,6 +109,7 @@ class DataTables extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
+    initialSort: PropTypes.object,
   };
 
   static contextTypes = {
@@ -139,15 +140,16 @@ class DataTables extends Component {
     showCheckboxes: false,
     height: 'inherit',
     showHeaderToolbar: false,
+    initialSort: {
+      column: '',
+      order: 'asc',
+    }
   };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      sort: {
-        column: '',
-        order: 'asc',
-      },
+      sort: props.initialSort,
     };
   }
 
