@@ -509,9 +509,9 @@ describe('<DataTables />', function() {
     });
   });
 
-  describe( 'row size toolbar', function() {
+  describe('row size controls', function() {
     const muiTheme = getMuiTheme();
-    describe( 'when showRowSizeToolbar = false', function() {
+    describe('when showRowSizeControls = false', function() {
       let wrapper;
       before(function() {
         wrapper = mount(
@@ -524,7 +524,7 @@ describe('<DataTables />', function() {
             multiSelectable={true}
             showCheckboxes={true}
             enableSelectAll={true}
-            showRowSizeToolbar={false}
+            showRowSizeControls={false}
             page={1}
             count={11}
           />,
@@ -533,7 +533,7 @@ describe('<DataTables />', function() {
             childContextTypes: {muiTheme: PropTypes.object},
           }
         );
-      } );
+      });
 
       it('should not render row size label', function() {
         expect(wrapper.find({style: styles.footerToolbarItem})).to.have.length(2);
@@ -547,7 +547,7 @@ describe('<DataTables />', function() {
         const rowSizeItems = wrapper.find(MenuItem);
         expect(rowSizeItems).to.have.length(0);
       });
-    } );
+    });
 
     describe( 'when rowSizeList is empty', function() {
       let wrapper;
@@ -572,7 +572,7 @@ describe('<DataTables />', function() {
             childContextTypes: {muiTheme: PropTypes.object},
           }
         );
-      } );
+      });
 
       it('should render row size label', function() {
         expect(wrapper.find({style: styles.footerToolbarItem})).to.have.length(3);
@@ -581,12 +581,6 @@ describe('<DataTables />', function() {
       it('should not render row size menu', function() {
         expect(wrapper.find(DropDownMenu)).to.have.length(0);
       });
-
-      it('should render row size value', function() {
-        const rowSizeItems = wrapper.find('.rowSizeValue');
-        expect(rowSizeItems.text()).to.equal('10');
-      });
-    } );
-
-  } );
+    });
+  });
 });
