@@ -92,6 +92,7 @@ class DataTables extends Component {
     rowSize: PropTypes.number,
     rowSizeLabel: PropTypes.string,
     rowSizeList: PropTypes.array,
+    showRowSizeToolbar: PropTypes.bool,
     selectable: PropTypes.bool,
     selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
@@ -123,6 +124,7 @@ class DataTables extends Component {
     summaryLabelTemplate: (start, end, count) => {
       return `${start} - ${end} of ${count}`;
     },
+    showRowSizeToolbar: true,
     filterHintText: 'Search',
     columns: [],
     data: [],
@@ -260,6 +262,7 @@ class DataTables extends Component {
       rowSize,
       rowSizeLabel,
       rowSizeList,
+      showRowSizeToolbar,
       summaryLabelTemplate,
       columns,
       data,
@@ -305,6 +308,40 @@ class DataTables extends Component {
           onFilterValueChange={this.handleFilterValueChange}
           toolbarIconRight={toolbarIconRight}
         />
+      );
+    }
+
+    let rowSizeToolbar = null;
+    if (showRowSizeToolbar) {
+      rowSizeToolbar = (
+        <div>
+          <div style={styles.footerToolbarItem}>
+            <div>{rowSizeLabel}</div>
+          </div>
+          {
+            rowSizeList.length > 0
+            ?
+            (
+              <DropDownMenu
+                labelStyle={styles.rowSizeMenu}
+                value={rowSize}
+                onChange={this.handleRowSizeChange}
+              >
+                {rowSizeList.map((rowSize) => {
+                  return (
+                    <MenuItem
+                      key={rowSize}
+                      value={rowSize}
+                      primaryText={rowSize}
+                    />
+                  );
+                })}
+              </DropDownMenu>
+            )
+            :
+            <span className='rowSizeValue'>{rowSize}</span>
+          }
+        </div>
       );
     }
 
@@ -385,24 +422,7 @@ class DataTables extends Component {
         </DataTablesTable>
         <Toolbar style={Object.assign({}, styles.footerToolbar, footerToolbarStyle)}>
           <div style={styles.footerControlGroup}>
-            <div style={styles.footerToolbarItem}>
-              <div>{rowSizeLabel}</div>
-            </div>
-            <DropDownMenu
-              labelStyle={styles.rowSizeMenu}
-              value={rowSize}
-              onChange={this.handleRowSizeChange}
-            >
-              {rowSizeList.map((rowSize) => {
-                return (
-                  <MenuItem
-                    key={rowSize}
-                    value={rowSize}
-                    primaryText={rowSize}
-                  />
-                );
-              })}
-            </DropDownMenu>
+            {rowSizeToolbar}
             <div style={styles.footerToolbarItem}>
               <div>{summaryLabelTemplate(start, end, totalCount)}</div>
             </div>
