@@ -1,6 +1,6 @@
 {
   "name": "material-ui-datatables",
-  "version": "0.16.9",
+  "version": "0.18.0",
   "description": "An another React Data tables component.",
   "main": "index.js",
   "scripts": {
