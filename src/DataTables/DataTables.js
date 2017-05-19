@@ -99,6 +99,7 @@ class DataTables extends Component {
     selectable: PropTypes.bool,
     selectedRows: PropTypes.array,
     showCheckboxes: PropTypes.bool,
+    showFooterToolbar: PropTypes.bool,
     showHeaderToolbar: PropTypes.bool,
     showRowHover: PropTypes.bool,
     showRowSizeControls: PropTypes.bool,
@@ -145,6 +146,7 @@ class DataTables extends Component {
     showCheckboxes: false,
     height: 'inherit',
     showHeaderToolbar: false,
+    showFooterToolbar: true,
     initialSort: {
       column: '',
       order: 'asc',
@@ -262,6 +264,7 @@ class DataTables extends Component {
       showCheckboxes,
       height,
       showHeaderToolbar,
+      showFooterToolbar,
       rowSize,
       rowSizeLabel,
       rowSizeList,
@@ -346,6 +349,34 @@ class DataTables extends Component {
       );
     }
 
+    let footerToolbar;
+    if (showFooterToolbar) {
+      footerToolbar = (
+        <Toolbar style={Object.assign({}, styles.footerToolbar, footerToolbarStyle)}>
+          <div style={styles.footerControlGroup}>
+            {rowSizeControls}
+            <div style={styles.footerToolbarItem}>
+              <div>{summaryLabelTemplate(start, end, totalCount)}</div>
+            </div>
+            <div style={Object.assign(styles.paginationButtons, styles.footerToolbarItem)}>
+              <FlatButton
+                icon={<ChevronLeft />}
+                style={styles.paginationButton}
+                onClick={this.handlePreviousPageClick}
+                disabled={previousButtonDisabled}
+              />
+              <FlatButton
+                icon={<ChevronRight />}
+                style={styles.paginationButton}
+                onClick={this.handleNextPageClick}
+                disabled={nextButtonDisabled}
+              />
+            </div>
+          </div>
+        </Toolbar>
+      );
+    }
+
     return (
       <div>
         {headerToolbar}
@@ -421,28 +452,7 @@ class DataTables extends Component {
             })}
           </DataTablesTableBody>
         </DataTablesTable>
-        <Toolbar style={Object.assign({}, styles.footerToolbar, footerToolbarStyle)}>
-          <div style={styles.footerControlGroup}>
-            {rowSizeControls}
-            <div style={styles.footerToolbarItem}>
-              <div>{summaryLabelTemplate(start, end, totalCount)}</div>
-            </div>
-            <div style={Object.assign(styles.paginationButtons, styles.footerToolbarItem)}>
-              <FlatButton
-                icon={<ChevronLeft />}
-                style={styles.paginationButton}
-                onClick={this.handlePreviousPageClick}
-                disabled={previousButtonDisabled}
-              />
-              <FlatButton
-                icon={<ChevronRight />}
-                style={styles.paginationButton}
-                onClick={this.handleNextPageClick}
-                disabled={nextButtonDisabled}
-              />
-            </div>
-          </div>
-        </Toolbar>
+        {footerToolbar}
       </div>
     );
   }
