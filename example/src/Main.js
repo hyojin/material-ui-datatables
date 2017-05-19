@@ -521,6 +521,27 @@ class Main extends Component {
               />
             </Card>
           </div>
+          <div style={styles.component}>
+            <h2>DataTables (Disable footer toolbar)</h2>
+            <Card style={{margin: 12, textAlign: 'left'}}>
+              <CardHeader
+                title='Nutrition'
+                titleStyle={{fontSize: 20}}
+              />
+              <DataTables
+                height={'auto'}
+                selectable={false}
+                showRowHover={true}
+                columns={TABLE_COLUMNS}
+                data={TABLE_DATA}
+                multiSelectable={false}
+                showCheckboxes={false}
+                enableSelectAll={false}
+                showFooterToolbar={false}
+                count={11}
+              />
+            </Card>
+          </div>
         </div>
       </MuiThemeProvider>
     );

@@ -108,6 +108,7 @@ class MyComponent extends Component {
 | selectable           | bool      | false             |                                              |
 | selectedRows         | array     | []                |                                              |
 | showCheckboxes       | bool      | false             |                                              |
+| showFooterToolbar    | bool      | true              |                                              |
 | showHeaderToolbar    | bool      | false             |                                              |
 | showRowHover         | bool      | false             |                                              |
 | showRowSizeControls  | bool      | false             |                                              |

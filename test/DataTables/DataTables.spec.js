@@ -109,6 +109,9 @@ describe('<DataTables />', function() {
     it('should not render checkboxes', function() {
       expect(wrapper.find('[type="checkbox"]')).to.have.length(0);
     });
+    it('should render footer toolbar', function() {
+      expect(wrapper.find({style: styles.footerToolbar})).to.have.length(1);
+    });
   });
 
   describe('Selectable & Tooltip & Pagination', function() {
@@ -581,6 +584,37 @@ describe('<DataTables />', function() {
       it('should not render row size menu', function() {
         expect(wrapper.find(DropDownMenu)).to.have.length(0);
       });
+    });
+  });
+
+  describe('Disable footer toolbar', function() {
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          height={'auto'}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_CLASSNAME}
+          data={TABLE_DATA}
+          multiSelectable={true}
+          showCheckboxes={true}
+          enableSelectAll={true}
+          page={1}
+          count={11}
+          showFooterToolbar={false}
+        />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: PropTypes.object},
+        }
+      );
+    });
+
+    it('should not render footer toolbar', function() {
+      expect(wrapper.find({style: styles.footerToolbar})).to.have.length(0);
     });
   });
 });
