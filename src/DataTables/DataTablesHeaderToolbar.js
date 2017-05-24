@@ -72,10 +72,19 @@ class DataTablesHeaderToolbar extends Component {
   constructor(props, context) {
     super(props, context);
     this.filterValueTimer = undefined;
+    this.filterInput = undefined;
     this.state = {
       mode: 'default',
       filterValue: '',
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.mode === 'default' && this.state.mode === 'filter') {
+      if (this.filterInput) {
+        this.filterInput.focus();
+      }
+    }
   }
 
   handleFilterClick = () => {
@@ -151,6 +160,9 @@ class DataTablesHeaderToolbar extends Component {
               hintText={filterHintText}
               onChange={this.handleFilterValueChange}
               value={filterValue}
+              ref={(textField) => {
+                this.filterInput = textField ? textField.input : null;
+              }}
             />
           </div>
           <div style={styles.headerToolbarDefaultIcons}>

@@ -241,8 +241,12 @@ describe('<DataTables />', function() {
       wrapper.find(DataTablesRowColumn).first().simulate('click');
       expect(handleCellDoubleClick).to.have.property('callCount', 1);
     });
-    it('should call filter value change handler', function(done) {
+    it('should call filter value change handler and set focus to input', function(done) {
       wrapper.find(DataTablesHeaderToolbar).find(IconButton).simulate('click');
+      const inputNodeInstanceId = Object.keys(wrapper.find(DataTablesHeaderToolbar).find(TextField).find('input').getDOMNode())[0];
+      const inputDomId = wrapper.find(DataTablesHeaderToolbar).find(TextField).find('input').getDOMNode()[inputNodeInstanceId]._domID;
+      const activeElementDomId = document.activeElement[inputNodeInstanceId]._domID;
+      expect(inputDomId).to.equal(activeElementDomId);
       wrapper.find(DataTablesHeaderToolbar).find(TextField).find('input')
           .simulate('change', {target: {value: 'dummy'}});
       setTimeout(() => {
