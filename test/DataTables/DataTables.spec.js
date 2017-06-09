@@ -84,6 +84,10 @@ describe('<DataTables />', function() {
       expect(dataRows.getNodes()[3].props.children[6].props.children).to.equal('14%');
       expect(dataRows.getNodes()[3].props.children[7].props.children).to.equal('1%');
     });
+    it('should render data columns render function', function() {
+      const dataRows = wrapper.find(DataTablesRow);
+      expect(dataRows.getNodes()[2].props.children[2].props.children).to.equal('6.0');
+    });
     it('should render row size label', function() {
       const rowSizeLabelWrapper = wrapper.find({style: styles.footerToolbarItem}).getNodes()[0];
       expect(rowSizeLabelWrapper.props.children.props.children).to.equal('Rows per page:');

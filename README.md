@@ -145,6 +145,7 @@ class MyComponent extends Component {
   style: {
     width: 250,
   },
+  render: (name, all) => <p>{name}</p>
 }
 ```
 
