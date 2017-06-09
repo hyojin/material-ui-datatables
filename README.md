@@ -132,6 +132,7 @@ class MyComponent extends Component {
 | sortable             | bool      | false             |                                              |
 | tooltip              | string    |                   |                                              |
 | className            | string    |                   |                                              |
+| render               | function  |                   |                                              |
 | style                | object    |                   | Inline column styles                         |
 
 ### Setting example
