@@ -247,6 +247,11 @@ class DataTables extends Component {
     }
   }
 
+  renderTableRowColumnData = (row, column) => {
+    if (column.render) return column.render(row[column.key], row);
+    return row[column.key];
+  }
+
   render() {
     const {
       title,
@@ -443,7 +448,7 @@ class DataTables extends Component {
                         style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, column.style)}
                         key={index}
                       >
-                        {row[column.key]}
+                        {this.renderTableRowColumnData(row, column)}
                       </DataTablesRowColumn>
                     );
                   })}

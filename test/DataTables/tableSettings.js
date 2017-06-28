@@ -1,3 +1,4 @@
+import React from 'react';
 import {deepOrange500} from 'material-ui/styles/colors';
 
 export const TABLE_COLUMNS = [
@@ -71,7 +72,7 @@ export const TABLE_COLUMNS_SORT_STYLE = [
     sortable: true,
     style: {
       width: 250,
-    }
+    },
   }, {
     key: 'calories',
     label: 'Calories',
@@ -79,6 +80,7 @@ export const TABLE_COLUMNS_SORT_STYLE = [
   }, {
     key: 'fat',
     label: 'Fat (g)',
+    render: (fat) => <div>{fat}</div>
   }, {
     key: 'carbs',
     label: 'Carbs (g)',

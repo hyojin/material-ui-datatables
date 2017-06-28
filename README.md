@@ -132,6 +132,7 @@ class MyComponent extends Component {
 | sortable             | bool      | false             |                                              |
 | tooltip              | string    |                   |                                              |
 | className            | string    |                   |                                              |
+| render               | function  |                   |                                              |
 | style                | object    |                   | Inline column styles                         |
 
 ### Setting example
@@ -145,6 +146,7 @@ class MyComponent extends Component {
   style: {
     width: 250,
   },
+  render: (name, all) => <p>{name}</p>
 }
 ```
 
