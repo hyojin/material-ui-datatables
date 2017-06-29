@@ -421,6 +421,7 @@ class DataTables extends Component {
                     sortable={sortable}
                     sorted={sorted}
                     order={order}
+                    alignRight={column.alignRight}
                     className={column.className}
                   >
                     <span>{column.label}</span>
