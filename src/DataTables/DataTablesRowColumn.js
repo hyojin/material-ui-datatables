@@ -10,7 +10,7 @@ function getStyles(props, context) {
       paddingLeft: tableRowColumn.spacing,
       paddingRight: tableRowColumn.spacing,
       height: tableRowColumn.height,
-      textAlign: 'left',
+      textAlign: props.alignRight ? 'right' : 'left',
       fontSize: 13,
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
@@ -78,6 +78,7 @@ class DataTablesRowColumn extends TableRowColumn {
       onHover, // eslint-disable-line no-unused-vars
       onHoverExit, // eslint-disable-line no-unused-vars
       style,
+      alignRight, // eslint-disable-line no-unused-vars
       ...other, // eslint-disable-line comma-dangle
     } = this.props;
 
