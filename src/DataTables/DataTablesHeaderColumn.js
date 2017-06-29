@@ -142,6 +142,7 @@ class DataTablesHeaderColumn extends TableHeaderColumn {
       sortable,
       sorted,
       order,
+      alignRight, // eslint-disable-line no-unused-vars
       ...other, // eslint-disable-line comma-dangle
     } = this.props;
 

@@ -448,6 +448,7 @@ class DataTables extends Component {
                       <DataTablesRowColumn
                         style={Object.assign({}, styles.tableRowColumn, tableRowColumnStyle, column.style)}
                         key={index}
+                        alignRight={column.alignRight}
                       >
                         {this.renderTableRowColumnData(row, column)}
                       </DataTablesRowColumn>

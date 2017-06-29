@@ -133,6 +133,7 @@ class MyComponent extends Component {
 | tooltip              | string    |                   |                                              |
 | className            | string    |                   |                                              |
 | render               | function  |                   |                                              |
+| alignRight           | bool      |                   |                                              |
 | style                | object    |                   | Inline column styles                         |
 
 ### Setting example

@@ -123,6 +123,7 @@ const TABLE_COLUMNS_SORT_STYLE = [
   }, {
     key: 'fat',
     label: 'Fat (g)',
+    alignRight: true,
   }, {
     key: 'carbs',
     label: 'Carbs (g)',
