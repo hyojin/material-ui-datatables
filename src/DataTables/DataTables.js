@@ -115,6 +115,8 @@ class DataTables extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
+    toolbarMode: PropTypes.string,
+    filterValue: PropTypes.string,
   };
 
   static contextTypes = {
@@ -318,6 +320,8 @@ class DataTables extends Component {
           titleStyle={titleStyle}
           onFilterValueChange={this.handleFilterValueChange}
           toolbarIconRight={toolbarIconRight}
+          mode={this.props.toolbarMode}
+          filterValue={this.props.filterValue}
         />
       );
     }
