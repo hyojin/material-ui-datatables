@@ -79,6 +79,11 @@ class DataTablesHeaderToolbar extends Component {
     };
   }
 
+  componentDidMount() {
+    const {mode, filterValue} = this.props;
+    this.setState({mode, filterValue});
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.mode === 'default' && this.state.mode === 'filter') {
       if (this.filterInput) {
