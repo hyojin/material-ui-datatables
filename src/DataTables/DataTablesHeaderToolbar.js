@@ -54,12 +54,14 @@ class DataTablesHeaderToolbar extends Component {
 
   static propTypes = {
     filterHintText: PropTypes.string,
+    filterValue: PropTypes.string,
     handleFilterValueChange: PropTypes.func,
+    mode: PropTypes.string,
     onFilterValueChange: PropTypes.func,
+    showFilterIcon: PropTypes.bool,
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
-    showFilterIcon: PropTypes.bool,
   };
 
   static defaultProps = {
