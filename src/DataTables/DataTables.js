@@ -115,6 +115,9 @@ class DataTables extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
+    headerToolbarMode: PropTypes.string,
+    filterValue: PropTypes.string,
+    showHeaderToolbarFilterIcon: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -287,6 +290,9 @@ class DataTables extends Component {
       tableRowColumnStyle,
       tableRowStyle,
       tableWrapperStyle,
+      headerToolbarMode,
+      filterValue,
+      showHeaderToolbarFilterIcon,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
 
@@ -318,6 +324,9 @@ class DataTables extends Component {
           titleStyle={titleStyle}
           onFilterValueChange={this.handleFilterValueChange}
           toolbarIconRight={toolbarIconRight}
+          mode={headerToolbarMode}
+          filterValue={filterValue}
+          showFilterIcon={showHeaderToolbarFilterIcon}
         />
       );
     }

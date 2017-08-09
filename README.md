@@ -1,19 +1,21 @@
 # Material-UI-Datatables
 
-[![npm](https://img.shields.io/npm/v/material-ui-datatables.svg)](https://www.npmjs.com/package/material-ui-datatables)
-[![Build Status](https://travis-ci.org/hyojin/material-ui-datatables.svg?branch=master)](https://travis-ci.org/hyojin/material-ui-datatables)
-[![Coverage Status](https://coveralls.io/repos/github/hyojin/material-ui-datatables/badge.svg?branch=master)](https://coveralls.io/github/hyojin/material-ui-datatables?branch=master)
+[![npm](https://img.shields.io/npm/v/material-ui-datatables.svg?style=flat-square)](https://www.npmjs.com/package/material-ui-datatables)
+[![Build Status](https://img.shields.io/travis/hyojin/material-ui-datatables/master.svg?style=flat-square)](https://travis-ci.org/hyojin/material-ui-datatables)
+[![Coverage Status](https://img.shields.io/coveralls/hyojin/material-ui-datatables/master.svg?style=flat-square)](https://coveralls.io/github/hyojin/material-ui-datatables?branch=master)
 
 An another React Data tables component.  
 Material-UI-Datatables is a custom [React](https://facebook.github.io/react/) component using awesome [Material-UI](http://www.material-ui.com/). It provides rendering data and emitting events
- such as filter and column sort and pagination which may help you dealing with your data. But it doesn't provide features all done within the component. Most part of this component is stateless, which means you need to implement your logic for the events.
+ such as filter and column sort and pagination which may help you dealing with your data. But it doesn't provide features all done within the component. Most parts of this component are stateless, which means you need to implement your logic for the events.
 
 **Now material-ui provides [example code](https://material-ui-1dab0.firebaseapp.com/component-demos/tables) of data tables component with it's v1.0.0 package**
 
 ## Installation
 ```sh
 npm install material-ui-datatables
+```
 or
+```sh
 yarn add material-ui-datatables
 ```
 
@@ -95,7 +97,9 @@ class MyComponent extends Component {
 | data                 | array     |                   |                                              |
 | enableSelectAll      | bool      | false             |                                              |
 | filterHintText       | string    | 'Search'          |                                              |
+| filterValue          | string    | ''                |                                              |
 | footerToolbarStyle   | object    |                   |                                              |
+| headerToolbarMode    | string    | 'default'         | 'default' or 'filter'                        |
 | height               | string    | 'inherit'         |                                              |
 | initialSort          | object    |                   | {column: 'column key', order: 'asc or desc'} |
 | multiSelectable      | bool      | false             |                                              |
@@ -116,6 +120,7 @@ class MyComponent extends Component {
 | showCheckboxes       | bool      | false             |                                              |
 | showFooterToolbar    | bool      | true              |                                              |
 | showHeaderToolbar    | bool      | false             |                                              |
+| showHeaderToolbarFilterIcon | bool | true            |                                              |
 | showRowHover         | bool      | false             |                                              |
 | showRowSizeControls  | bool      | false             |                                              |
 | summaryLabelTemplate | function  |                   |                                              |

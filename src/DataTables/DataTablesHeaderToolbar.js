@@ -59,10 +59,13 @@ class DataTablesHeaderToolbar extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
+    showFilterIcon: PropTypes.bool,
   };
 
   static defaultProps = {
-
+    mode: 'default',
+    filterValue: '',
+    showFilterIcon: true,
   };
 
   static contextTypes = {
@@ -74,8 +77,8 @@ class DataTablesHeaderToolbar extends Component {
     this.filterValueTimer = undefined;
     this.filterInput = undefined;
     this.state = {
-      mode: 'default',
-      filterValue: '',
+      mode: props.mode,
+      filterValue: props.filterValue,
     };
   }
 
@@ -133,6 +136,7 @@ class DataTablesHeaderToolbar extends Component {
       toolbarIconRight,
       title, // eslint-disable-line no-unused-vars
       titleStyle,
+      showFilterIcon,
       ...other, // eslint-disable-line no-unused-vars, comma-dangle
     } = this.props;
 
@@ -144,6 +148,7 @@ class DataTablesHeaderToolbar extends Component {
     const styles = getStyles(this.context);
 
     let contentNode;
+    let filterIconNode;
 
     if (mode === 'default') {
       contentNode = (<ToolbarTitle style={Object.assign({}, styles.toolbarTitle, titleStyle)} text={title} />);
@@ -200,18 +205,24 @@ class DataTablesHeaderToolbar extends Component {
       }
     }
 
+    if (showFilterIcon) {
+      filterIconNode = (
+        <IconButton
+          style={Object.assign(styles.headerToolbarIconButton, styles.icon)}
+          onClick={this.handleFilterClick}
+        >
+          <FilterListIcon
+            color={mode === 'filter' ? blue500 : ''}
+          />
+        </IconButton>
+      );
+    }
+
     return (
       <Toolbar style={styles.headerToolbar}>
         {contentNode}
         <ToolbarGroup>
-          <IconButton
-            style={Object.assign(styles.headerToolbarIconButton, styles.icon)}
-            onClick={this.handleFilterClick}
-          >
-            <FilterListIcon
-              color={mode === 'filter' ? blue500 : ''}
-            />
-          </IconButton>
+          {filterIconNode}
           {toolbarIconRightChildren}
         </ToolbarGroup>
       </Toolbar>

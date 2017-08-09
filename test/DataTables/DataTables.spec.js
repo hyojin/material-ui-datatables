@@ -14,6 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import FilterListIcon from 'material-ui/svg-icons/content/filter-list';
 import {deepOrange500} from 'material-ui/styles/colors';
 
 import {
@@ -366,6 +367,7 @@ describe('<DataTables />', function() {
 
     it('should render custom tool bar icons', function() {
       expect(wrapper.find(DataTablesHeaderToolbar).find(IconButton)).to.have.length(3);
+      expect(wrapper.find(DataTablesHeaderToolbar).find(FilterListIcon)).to.have.length(1);
       expect(wrapper.find(DataTablesHeaderToolbar).find(PersonAdd)).to.have.length(1);
       expect(wrapper.find(DataTablesHeaderToolbar).find(InfoOutline)).to.have.length(1);
     });
@@ -623,6 +625,72 @@ describe('<DataTables />', function() {
 
     it('should not render footer toolbar', function() {
       expect(wrapper.find({style: styles.footerToolbar})).to.have.length(0);
+    });
+  });
+
+  describe('Header toolbar mode', function() {
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          height={'auto'}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_CLASSNAME}
+          data={TABLE_DATA}
+          multiSelectable={true}
+          showCheckboxes={true}
+          enableSelectAll={true}
+          showHeaderToolbar={true}
+          headerToolbarMode={'filter'}
+          filterValue={'test'}
+          page={1}
+          count={11}
+        />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: PropTypes.object},
+        }
+      );
+    });
+
+    it('should render header toolbar with filter mode', function() {
+      expect(wrapper.find(DataTablesHeaderToolbar).prop('mode')).to.equal('filter');
+      expect(wrapper.find(DataTablesHeaderToolbar).prop('filterValue')).to.equal('test');
+    });
+  });
+
+  describe('Hide filter icon', function() {
+    let wrapper;
+    const muiTheme = getMuiTheme();
+
+    before(function() {
+      // full rendering
+      wrapper = mount(
+        <DataTables
+          height={'auto'}
+          showRowHover={true}
+          columns={TABLE_COLUMNS_CLASSNAME}
+          data={TABLE_DATA}
+          multiSelectable={false}
+          showHeaderToolbar={true}
+          showCheckboxes={false}
+          enableSelectAll={false}
+          showFooterToolbar={true}
+          count={10}
+          showHeaderToolbarFilterIcon={false}
+        />,
+        {
+          context: {muiTheme: muiTheme},
+          childContextTypes: {muiTheme: PropTypes.object},
+        }
+      );
+    });
+
+    it('should not render filter icon in header toolbar', function() {
+      expect(wrapper.find(DataTablesHeaderToolbar).find(FilterListIcon)).to.have.length(0);
     });
   });
 });
