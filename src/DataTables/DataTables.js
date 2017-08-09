@@ -78,9 +78,11 @@ class DataTables extends Component {
     deselectOnClickaway: PropTypes.bool,
     enableSelectAll: PropTypes.bool,
     filterHintText: PropTypes.string,
+    filterValue: PropTypes.string,
     fixedFooter: PropTypes.bool,
     fixedHeader: PropTypes.bool,
     footerToolbarStyle: PropTypes.object,
+    headerToolbarMode: PropTypes.string,
     height: PropTypes.string,
     initialSort: PropTypes.object,
     multiSelectable: PropTypes.bool,
@@ -101,6 +103,7 @@ class DataTables extends Component {
     showCheckboxes: PropTypes.bool,
     showFooterToolbar: PropTypes.bool,
     showHeaderToolbar: PropTypes.bool,
+    showHeaderToolbarFilterIcon: PropTypes.bool,
     showRowHover: PropTypes.bool,
     showRowSizeControls: PropTypes.bool,
     stripedRows: PropTypes.bool,
@@ -115,9 +118,6 @@ class DataTables extends Component {
     title: PropTypes.string,
     titleStyle: PropTypes.object,
     toolbarIconRight: PropTypes.node,
-    headerToolbarMode: PropTypes.string,
-    filterValue: PropTypes.string,
-    showHeaderToolbarFilterIcon: PropTypes.bool,
   };
 
   static contextTypes = {
