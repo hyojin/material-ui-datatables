@@ -448,7 +448,7 @@ class DataTables extends Component {
             {data.map((row, index) => {
               return (
                 <DataTablesRow
-                  style={Object.assign({}, styles.tableRow, tableRowStyle)}
+                  style={Object.assign({}, styles.tableRow, tableRowStyle, row.style)}
                   key={index}
                   selected={isRowSelected(index, this.props.selectedRows)}
                 >
