@@ -8,7 +8,7 @@ An another React Data tables component.
 Material-UI-Datatables is a custom [React](https://facebook.github.io/react/) component using awesome [Material-UI](http://www.material-ui.com/). It provides rendering data and emitting events
  such as filter and column sort and pagination which may help you dealing with your data. But it doesn't provide features all done within the component. Most parts of this component are stateless, which means you need to implement your logic for the events.
 
-**Now material-ui provides [example code](https://material-ui-1dab0.firebaseapp.com/component-demos/tables) of data tables component with it's v1.0.0 package**
+**Now material-ui provides [example code](https://material-ui-1dab0.firebaseapp.com/demos/tables/) of data tables component with it's v1.0.0 package**
 
 ## Installation
 ```sh
