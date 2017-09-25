@@ -141,7 +141,10 @@ class DataTablesTableRow extends TableRow {
         if (this.props.selectable && this.props.onCellClick) {
           this.props.onCellClick(event, this.props.rowNumber, columnIndex);
         }
-        event.ctrlKey = true;
+        try {
+          event.ctrlKey = true;
+        } catch(e) {
+        }
         this.onRowClick(event);
       }, 300);
     }
