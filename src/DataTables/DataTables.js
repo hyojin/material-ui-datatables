@@ -185,7 +185,7 @@ class DataTables extends Component {
 
   handleCellClick = (rowIndex, columnIndex, event) => {
     const {onCellClick, selectable} = this.props;
-    if (onCellClick && !selectable) {
+    if (onCellClick) {
       const adjustedColumnIndex = this.props.showCheckboxes ? columnIndex : columnIndex - 1;
       onCellClick(
         rowIndex,
